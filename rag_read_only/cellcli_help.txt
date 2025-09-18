@@ -1,0 +1,739 @@
+Help for LIST ACTIVEREQUEST
+
+Usage: LIST ACTIVEREQUEST [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for active requests.
+
+Arguments:
+<name>:  The name of the active request to be displayed.
+<filters>:  An expression that determines which active requests should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ACTIVEREQUEST DETAIL
+
+Help for LIST ALERTDEFINITION
+
+Usage: LIST ALERTDEFINITION [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for alert definitions.
+
+Arguments:
+<name>:  The name of the alert definition to be displayed.
+<filters>:  An expression that determines which alert definitions should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ALERTDEFINITION DETAIL
+
+Help for LIST ALERTHISTORY
+
+Usage: LIST ALERTHISTORY [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for alerts.
+
+Arguments:
+<name>:  The id of the alert to be displayed.
+<filters>:  An expression that determines which alerts should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ALERTHISTORY DETAIL
+
+Help for LIST CELL
+
+Usage: LIST CELL [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the cell.
+
+Arguments:
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST CELL attributes status
+LIST CELL DETAIL
+
+Help for LIST CELLDISK
+
+Usage: LIST CELLDISK [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for cell disks.
+
+Arguments:
+<name>:  The name of the cell disk to be displayed.
+<filters>:  An expression that determines which cell disks should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST CELLDISK cd1 DETAIL
+LIST CELLDISK where freespace > 100M
+
+Help for LIST CLUSTER
+
+Usage: LIST CLUSTER [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for active ASM clusters.
+
+Arguments:
+<name>:  The name of the ASM cluster to be displayed.
+<filters>:  An expression that determines which active ASM clusters should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST CLUSTER DETAIL
+
+Help for LIST DATABASE
+
+Usage: LIST DATABASE [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for active databases.
+
+Arguments:
+<name>:  The name of the database to be displayed.
+<filters>:  An expression that determines which active databases should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST DATABASE DETAIL
+
+Help for LIST DIAGPACK
+
+Usage: LIST DIAGPACK [DETAIL]
+
+Purpose: Show the status of the packaging process
+and the list of diagpacks under $LOG_HOME
+Examples:
+LIST DIAGPACK
+LIST DIAGPACK DETAIL
+
+
+Help for LIST ESCLUSTER
+
+Usage: LIST ESCLUSTER [ATTRIBUTES {ALL | <attribute_list>}] [DETAIL]
+
+Purpose: Displays attributes for Exascale cluster.
+
+Arguments:
+<attribute_list>: A comma-separated list of attributes to display.
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ESCLUSTER attributes leaderUrl
+LIST ESCLUSTER detail
+
+Help for LIST ESNODE
+
+Usage: LIST ESNODE [ATTRIBUTES {ALL | <attribute_list>}] [DETAIL]
+
+Purpose: Displays attributes of the Exascale node on the local host.
+
+Arguments:
+<attribute_list>: A comma-separated list of attributes to display.
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ESNODE attributes localRootCert
+LIST ESNODE detail
+
+Help for LIST FLASHCACHE
+
+Usage: LIST FLASHCACHE [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the flash cache.
+
+Arguments:
+<attribute_list>: The specific attributes to display.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST FLASHCACHE DETAIL
+
+Help for LIST FLASHCACHECONTENT
+
+Usage: LIST FLASHCACHECONTENT [<filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for flash cache entries.
+
+Arguments:
+<filters>:  An expression that determines the entries to be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST FLASHCACHECONTENT DETAIL
+
+Help for LIST FLASHLOG
+
+Usage: LIST FLASHLOG [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the flash log.
+
+Arguments:
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST FLASHLOG DETAIL
+
+Help for LIST GRIDDISK
+
+Usage: LIST GRIDDISK [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for grid disks.
+
+Arguments:
+<name>:  The name of the grid disk to be displayed.
+<filters>:  An expression that determines which grid disks should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST GRIDDISK where size > 100M
+LIST GRIDDISK gd1 DETAIL
+
+Help for LIST IBPORT
+
+Usage: LIST IBPORT [ <name> |  <filters> ]  [<attribute_list>] [DETAIL]
+
+Purpose: Display specified attributes for InfiniBand ports.
+
+Arguments:
+<name>: The name of the InfiniBand port to be displayed.
+<filter>: An expression that determines which InfiniBand ports should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]...}
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST IBPORT DETAIL
+LIST IBPORT 'HCA-1:1' WHERE status='Active' ATTRIBUTES name, lid, portNumber DETAIL
+
+Help for LIST IORMPLAN
+
+Usage: LIST IORMPLAN [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the IORM Plan
+
+Arguments:
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST IORMPLAN DETAIL
+
+Help for LIST IORMPROFILE
+
+Usage: LIST IORMPROFILE [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for IORM profiles.
+
+Arguments:
+<name>:  The name of the IORM profile to be displayed.
+<filters>:  An expression that determines which IORM profiles should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST IORMPROFILE DETAIL
+
+Help for LIST KEY
+
+Usage: LIST KEY [<name> | <filters>] [<attribute_list>] [DETAIL]
+LIST KEY [FOR {ASMCLUSTER | CELL | LOCAL CELL | REMOTE CELL}] [DETAIL]
+
+Purpose: Displays key values for clients.
+
+Arguments:
+<name>:  The name of the client to be displayed.
+<filters>:  An expression that determines which clients should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST KEY db1 DETAIL
+LIST KEY
+
+Help for LIST LUN
+
+Usage: LIST LUN [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for LUNs.
+
+Arguments:
+<name>:  The name of the LUN to be displayed.
+<filters>:  An expression that determines which LUNs should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST LUN where celldisk = null
+LIST LUN DETAIL
+
+Help for LIST METRICCURRENT
+
+Usage: LIST METRICCURRENT [<name1>[, <name2>]... ] [<filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for current metrics.
+
+Arguments:
+<nameN>:  The unique name of the metric(s) to be displayed.
+<filters>:  an expression of attributes that determines which metrics should
+be displayed:
+WHERE <filter1> [AND <fileter2>]...
+<filterN>:  <attrN> <comparison operator> <value>
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+The available attributes are displayed by DESCRIBE METRICCURRENT.
+
+Options:
+[DETAIL]: Formats the display with each attribute name followed
+by its value on a separate line.
+
+Examples:
+list metriccurrent
+list metriccurrent where collection=fineGrained
+list metriccurrent where objecttype='celldisk'
+list metriccurrent cl_cput, cl_runq detail
+list metriccurrent where alertState ! = 'normal'
+list metriccurrent where metricObjectName = 'CD1' ATTRIBUTES name,metricValue
+
+Help for LIST METRICDEFINITION
+
+Usage: LIST METRICDEFINITION [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for metric definitions.
+
+Arguments:
+<name>:  The name of the metric definition to be displayed.
+<filters>:  An expression that determines which metric definitions should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST METRICDEFINITION DETAIL
+
+Help for LIST METRICHISTORY
+
+Usage: LIST METRICHISTORY [<name1>[, <name2>]... ] [<filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for metrics over time.
+
+Arguments:
+<nameN>:  The unique name of the metric(s) to be displayed.
+<filters>:  an expression that determines which metrics should
+be displayed.
+WHERE <filter1> [AND <fileter2>]...
+<filterN>:  <attrN> <comparison operator> <value>
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+The available attributes are displayed by DESCRIBE METRICHISTORY.
+Filter on collectionTime to choose the desired time range.
+
+Options:
+[DETAIL]: Formats the display with each attribute name followed
+by its value on a separate line.
+
+Examples:
+list metrichistory CL_CPUT where collectionTime > ' 2008-04-28T13:32:13-07:00'
+list metrichistory DB_IO_WT_SM_RQ where alertState ! = 'normal' AND -
+collectionTime > ' 2008-04-28T13:32:13-07:00'
+list metrichistory where metricObjectName like 'CD.*' AND -
+collectionTime > ' 2008-04-28T13:32:13-07:00' AND -
+collectionTime < ' 2008-04-28T15:32:13-07:00'
+
+Help for LIST METRICSTREAM
+
+Usage: LIST METRICSTREAM [<name1>[, <name2>]... ] [<filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the metric stream.
+
+Arguments:
+<nameN>:  The unique name of the metric(s) to be displayed.
+<filters>:  an expression of attributes that determines which metrics should
+be displayed:
+WHERE <filter1> [AND <fileter2>]...
+<filterN>:  <attrN> <comparison operator> <value>
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+The available attributes are displayed by DESCRIBE METRICSTREAM.
+
+Options:
+[DETAIL]: Formats the display with each attribute name followed
+by its value on a separate line.
+
+Examples:
+list metricstream
+list metricstream where objecttype='celldisk'
+list metricstream cl_cput, cl_runq detail
+list metricstream where metricObjectName = 'CD1' ATTRIBUTES name,metricValue
+
+Help for LIST OFFLOADGROUP
+
+Usage: LIST OFFLOADGROUP [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for offloadgroups.
+
+Arguments:
+<name>:     The name of the offloadgroup to be displayed.
+<filters>:  An expression that determines which offloadgroups should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES { attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST OFFLOADGROUP DETAIL
+LIST OFFLOADGROUP offloadgroup1
+LIST OFFLOADGROUP where isSystemGroup = 'true'
+LIST OFFLOADGROUP ATTRIBUTES name, package
+
+Help for LIST PHYSICALDISK
+
+Usage: LIST PHYSICALDISK [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for physical disks.
+
+Arguments:
+<name>:  The name of the physical disk to be displayed.
+<filters>:  An expression that determines which physical disks should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST PHYSICALDISK DETAIL
+
+Help for LIST PLUGGABLEDATABASE
+
+Usage: LIST PLUGGABLEDATABASE [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for active pluggable databases.
+
+Arguments:
+<name>:  The name of the pluggable database to be displayed.
+<filters>:  An expression that determines which active pluggable databases
+should be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST PLUGGABLEDATABASE DETAIL
+
+Help for LIST QUARANTINE
+
+Usage: LIST QUARANTINE [<id> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for quarantines.
+
+Arguments:
+<id>:       The id of the quarantine to be displayed.
+<filters>:  An expression that determines which quarantines should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST QUARANTINE  DETAIL
+LIST QUARANTINE where comment like 'added.*'
+
+Help for LIST ROLE
+
+Usage: LIST ROLE [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Display specified attributes for roles.
+
+Arguments:
+<name>:  The name of the role to be displayed.
+<filters>:  An expression that determines which roles should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ROLE DETAIL
+LIST ROLE where name like 'role.*'
+
+Help for LIST SOFTWAREHISTORY
+
+Usage: LIST SOFTWAREHISTORY [ <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for past software updates.
+
+Arguments:
+<filters>:  An expression that determines which updates should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST SOFTWAREHISTORY  DETAIL
+LIST SOFTWAREHISTORY ATTRIBUTES name,status
+
+Help for LIST SOFTWAREUPDATE
+
+Usage: LIST SOFTWAREUPDATE  [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for software update.
+
+Arguments:
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST SOFTWAREUPDATE  DETAIL
+LIST SOFTWAREUPDATE ATTRIBUTES name,status
+
+Help for LIST THRESHOLD
+
+Usage: LIST THRESHOLD [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for thresholds.
+
+Arguments:
+<name>:  The name of the threshold to be displayed.
+<filters>:  An expression that determines which thresholds should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST THRESHOLD  DETAIL
+LIST THRESHOLD where name like 'db_io.*'
+
+Help for LIST USER
+
+Usage: LIST USER [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Display specified attributes for users.
+
+Arguments:
+<name>:  The name of the user to be displayed.
+<filters>:  An expression that determines which users should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST USER DETAIL
+LIST USER where name like 'user.*'
+
+Help for LIST VAULT
+
+Usage: LIST VAULT [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for active Exascale vaults.
+
+Arguments:
+<name>:  The name of the Exascale vault to be displayed.
+<filters>:  An expression that determines which active Exascale vaults should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST VAULT DETAIL
+
+Help for LIST VOLUME
+
+Usage: LIST VOLUME [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for active Exascale volumes.
+
+Arguments:
+<name>:  The name of the Exascale volume to be displayed.
+<filters>:  An expression that determines which active Exascale volumes should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST VOLUME DETAIL
+
+Help for LIST XRMEMCACHE
+
+Usage: LIST XRMEMCACHE [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the XRMEM cache.
+
+Arguments:
+<attribute_list>: The specific attributes to display.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST XRMEMCACHE DETAIL
+
+Help for LIST XRMEMCACHECONTENT
+
+Usage: LIST XRMEMCACHECONTENT [<filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Display information about the contents of the XRMEM cache.
+
+Arguments:
+<filters>:  An expression that determines the entries to be displayed.
+<attribute_list>: The specific attributes to display.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST XRMEMCACHECONTENT DETAIL
+LIST XRMEMCACHECONTENT where dbID = 0
+LIST XRMEMCACHECONTENT ATTRIBUTES cachedSize, clusterName
+
+Help for LIST XRMEMLOG
+
+Usage: LIST XRMEMLOG [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the XRMEMLOG.
+
+Arguments:
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST XRMEMLOG DETAIL

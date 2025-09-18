@@ -1,0 +1,339 @@
+Help for LIST ALERTDEFINITION
+
+Usage: LIST ALERTDEFINITION [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for alert definitions.
+
+Arguments:
+<name>:  The name of the alert definition to be displayed.
+<filters>:  an expression which determines which alert definitions should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ALERTDEFINITION DETAIL
+
+Help for LIST ALERTHISTORY
+
+Usage: LIST ALERTHISTORY [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for alerts.
+
+Arguments:
+<name>:  The id of the alert to be displayed.
+<filters>:  an expression which determines which alerts should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ALERTHISTORY DETAIL
+
+Help for LIST DBSERVER
+
+Usage: LIST DBSERVER [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the DBSERVER.
+
+Arguments:
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST DBSERVER attributes status, upTime
+LIST DBSERVER DETAIL
+
+Help for LIST DIAGPACK
+
+Usage: LIST DIAGPACK [DETAIL]
+
+Purpose: Show the status of the packaging process
+and the list of diagpacks
+Examples:
+LIST DIAGPACK
+LIST DIAGPACK DETAIL
+
+Help for LIST ESCLUSTER
+
+Usage: LIST ESCLUSTER [ATTRIBUTES {ALL | <attribute_list>}] [DETAIL]
+
+Purpose: Displays attributes for Exascale cluster.
+
+Arguments:
+<attribute_list>: A comma-separated list of attributes to display.
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ESCLUSTER attributes esLeaderManagementIP
+LIST ESCLUSTER detail
+
+Help for LIST ESFEATURE
+
+Usage: LIST ESFEATURE [ <name> |  <filters> ]  [<attribute_list>] [DETAIL]
+
+Purpose: Displays attributes for Exascale features.
+
+Arguments:
+<filter>: An expression which determines which Exascale feature should
+be displayed.
+<name>: The name of the Exascale feature to be displayed.
+<attribute_list>: A comma-separated list of attributes to display.
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ESFEATURE where instUniqueName='DB1' detail
+LIST ESFEATURE attributes name, activeVersion, supportedVersion
+LIST ESFEATURE detail
+
+Help for LIST ESINSTANCE
+
+Usage: LIST ESINSTANCE [<name>] [ATTRIBUTES {ALL | <attribute_list>}] [DETAIL]
+
+Purpose: Display specified attributes for an Exascale instance.
+
+Arguments:
+<name>: The name of the Exascale instance to be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]...}
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ESINSTANCE OCSSD DETAIL
+LIST ESINSTANCE OCSSD ATTRIBUTES name, userID
+
+Help for LIST ESNODE
+
+Usage: LIST ESNODE [ATTRIBUTES {ALL | <attribute_list>}] [DETAIL]
+
+Purpose: Displays attributes of the Exascale node on the local host.
+
+Arguments:
+<attribute_list>: A comma-separated list of attributes to display.
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ESNODE attributes esNodeRootCert
+LIST ESNODE detail
+
+Help for LIST IBPORT
+
+Usage: LIST IBPORT [ <name> |  <filters> ]  [<attribute_list>] [DETAIL]
+
+Purpose: Display specified attributes for InfiniBand ports.
+
+Arguments:
+<name>: The name of the InfiniBand port to be displayed.
+<filter>: An expression which determines which InfiniBand ports should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]...}
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST IBPORT DETAIL
+LIST IBPORT 'HCA-1:1' WHERE status='Active' ATTRIBUTES name, lid, portNumber DETAIL
+
+Help for LIST LUN
+
+Usage: LIST LUN [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for LUNs.
+
+Arguments:
+<name>:  The name of the LUN to be displayed.
+<filters>:  an expression which determines which LUNs should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST LUN where lunSize > 1000G
+LIST LUN DETAIL
+
+Help for LIST METRICCURRENT
+
+Usage: LIST METRICCURRENT [<name1>[, <name2>]... ] [<filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for current metrics.
+
+Arguments:
+<nameN>:  The unique name of the metric(s) to be displayed.
+<filters>:  an expression of attributes that determines which metrics should
+be displayed:
+WHERE <filter1> [AND <fileter2>]...
+<filterN>:  <attrN> <comparison operator> <value>
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+The available attributes are displayed by DESCRIBE METRICCURRENT.
+
+Options:
+[DETAIL]: Formats the display with each attribute name followed
+by its value on a separate line.
+
+Examples:
+list metriccurrent
+list metriccurrent where alertState ! = 'normal'
+list metriccurrent where metricObjectName = 'CD1' ATTRIBUTES name,metricValue
+
+Help for LIST METRICDEFINITION
+
+Usage: LIST METRICDEFINITION [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for metric definitions.
+
+Arguments:
+<name>:  The name of the metric definition to be displayed.
+<filters>:  an expression which determines which metric definitions should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST METRICDEFINITION DETAIL
+
+Help for LIST METRICHISTORY
+
+Usage: LIST METRICHISTORY [<name1>[, <name2>]... ] [<filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for metrics over time.
+
+Arguments:
+<nameN>:  The unique name of the metric(s) to be displayed.
+<filters>:  an expression that determines which metrics should
+be displayed.
+WHERE <filter1> [AND <fileter2>]...
+<filterN>:  <attrN> <comparison operator> <value>
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+The available attributes are displayed by DESCRIBE METRICHISTORY.
+Filter on collectionTime to choose the desired time range.
+
+Options:
+[DETAIL]: Formats the display with each attribute name followed
+by its value on a separate line.
+
+Examples:
+list metrichistory where alertState ! = 'normal' AND -
+collectionTime > ' 2013-04-28T13:32:13-07:00'
+list metrichistory where metricObjectName like '.*CPUT.*' AND -
+collectionTime > ' 2013-04-28T13:32:13-07:00' AND -
+collectionTime < ' 2013-04-28T15:32:13-07:00'
+
+Help for LIST PHYSICALDISK
+
+Usage: LIST PHYSICALDISK [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for physical disks.
+
+Arguments:
+<name>:  The name of the physical disk to be displayed.
+<filters>:  an expression which determines which physical disks should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST PHYSICALDISK DETAIL
+
+Help for LIST ROLE
+
+Usage: LIST ROLE [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Display specified attributes for roles.
+
+Arguments:
+<name>:  The name of the role to be displayed.
+<filters>:  an expression which determines which roles should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ROLE DETAIL
+LIST ROLE where name like 'role.*'
+
+Help for LIST THRESHOLD
+
+Usage: LIST THRESHOLD [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for thresholds.
+
+Arguments:
+<name>:  The name of the threshold to be displayed.
+<filters>:  an expression which determines which thresholds should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST THRESHOLD  DETAIL
+LIST THRESHOLD where name like '.*CPUT.*'
+
+Help for LIST USER
+
+Usage: LIST USER [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Display specified attributes for users.
+
+Arguments:
+<name>:  The name of the user to be displayed.
+<filters>:  an expression which determines which users should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST USER DETAIL
+LIST USER where name like 'user.*'

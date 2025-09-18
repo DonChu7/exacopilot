@@ -1,0 +1,315 @@
+Attributes for ALERTDEFINITION
+
+name: Identifier for the alert
+alertShortName: Abbreviated name for the alert. If the alert is based on a metric, then the short name is the same as the corresponding metric name attribute.
+alertSource: Source of the alert, such as 'BMC' or 'ADR'
+alertType: Alert type, either 'stateful' or 'stateless'
+description: Description for the alert
+metricName: Metric name if the alert is based on a metric
+
+Attributes for ALERTHISTORY
+
+name: Unique identifier for the alert
+alertDescription: Description for the alert
+alertMessage: Brief explanation of the alert
+alertSequenceID: Unique sequence ID for the alert. When an alert changes its state, such as 'warning' to 'critical' or 'critical' to 'clear', another occurrence of the alert is created with the same sequence number and the timestamp of the transition.
+alertShortName: Abbreviated name for the alert. If the alert is based on a metric, then the short name is the same as the corresponding metric name attribute.
+alertType: Alert type, either 'stateful' or 'stateless'
+beginTime: Timestamp when an alert changes its state
+endTime: Timestamp for the end of the period when an alert changes its state
+examinedBy: Administrator who reviewed the alert
+failedMail: Intended e-mail recipient when a notification failed
+failedSNMP: Intended SNMP subscriber when a notification failed
+metricObjectName: Object, such as dbserver disk or grid disk, for which a metric threshold has caused an alert
+metricValue: Value of the metric that caused the alert
+notificationState: Number indicating progress in notifying subscribers to alert messages
+releaseVersion: Exadata system software release version
+rpmVersion: Exadata system software RPM version
+sequenceBeginTime: Timestamp when an alert sequence ID is first created
+serviceRequestNumber: The service request number associated with the alert
+serviceRequestLink: The URL to the service request associated with the alert
+severity: Severity level, either 'clear', 'info', 'warning', or 'critical'
+alertAction: Recommended action to perform for the alert
+
+Attributes for DBSERVER
+
+name: Unique dbserver name
+accountLockInDays: Number of days after a password expires before the user account is locked
+bbuStatus: Status of the hard disk controller battery-backed unit (BBU)
+bkpInterfaceName: The network interface used to transport data during backups
+bswEvents
+comment: User-specified comment
+coreCount: Number of active CPU cores in the database server
+cpuCount: Number of database server CPUs
+cpuTargetWatts: Specifies the CPU power consumption target in watts.
+diagHistoryDays: Retention period for ADR files (in days). The default is 7 days.
+diagPackEmailAttach: Specifies if a diagpack is included as an attachment in the alert email. The default is 'TRUE'.
+diagPackUploadEnabled: Specifies if the automatic diagpack upload feature is enabled. The default is 'TRUE'.
+edvEvents
+egsEvents
+emailFormat: Format of alert email messages, either 'html' or 'text'
+emailSubscriber: List of alert notification subscriber email addresses
+esnpEvents
+exaspliceVersion
+fanCount: Number of working fans and total number of fans, displayed as <working>/<total>
+fanStatus: Fan status, either 'normal', 'warning', or 'critical'
+httpsAccess: Control list of IP addresses with access to the Exadata RESTful Service using HTTPs
+iaasIdleInUse
+iaasMode
+iaasReason
+id: Server hardware global unique identifier (GUID)
+ifdEvents
+instanceMetadata: The version of the OCI instance metadata resource
+ilomIpAddress: Integrated Lights Out Manager (ILOM) service processor (SP) IP address
+ilomSyslogClients: The remote destination to forward Syslog messages from the Integrated Lights Out Manager (ILOM) service processor (SP). The value is the hostname or IP address of a remote log server or a comma-separated list of up to two log servers.
+interconnectCount: Number of active RDMA network interfaces
+interconnect1: Network interconnect for the dbserver. For example, 're0' or 'stre0'.
+interconnect2
+interconnect3
+interconnect4
+interconnect5
+interconnect6
+interconnect7
+interconnect8
+ipaddress1: RDMA Network Fabric (storage network) IP address
+ipaddress2
+ipaddress3
+ipaddress4
+ipaddress5
+ipaddress6
+ipaddress7
+ipaddress8
+kernelVersion: Host operating system kernel software version
+listeningInterface: List of interfaces that MS listens on for Exadata RESTful service HTTPs connections
+locatorLEDStatus: Status of server Locate LED, either 'on' or 'off'
+location: User-specified database server hardware location
+lowPowerModeSchedule: Specifies one or more low power mode schedules. The value uses the following syntax: lowPowerModeSchedule[-|+]=((startTimestamp="<timestamp>", durationMinutes=<duration-in-minutes>, frequency={daily|weekly})[,(startTimestamp="<timestamp>", durationMinutes=<duration-in-minutes>, frequency=<daily|weekly>)]...)
+lowPowerModeUntil: Regulates low power mode. Permitted settings are: <end-timestamp>: Switches on low power mode until the specified time. "": Switches off low power mode immediately. NULL: Switches off low power mode immediately. NEVER: Switches off low power mode immediately and disables the low power mode schedules.
+mailServer: Fully-qualified domain name of the email relay server used to send alert notifications
+makeModel: Server hardware make and model
+managementIpAddress: Management network IP address
+metricCollection: Specifies if Management Server (MS) performs metric collection. If 'FALSE', then no metric collection or alert mining occurs in the server. The default setting is 'TRUE'.
+metricFGCollIntvlInSec: Controls fine-grained metric collection. If the value is between 1 and 60, fine-grained metric collection is enabled, and the value represents the collection interval (in seconds). If the value is zero, then fine-grained metric collection is disabled.
+metricHistoryDays: Retention period for the default metric history (in days). The default is 7 days.
+metricStreamEndPoint: Specifies one or more collection endpoints that automatically receive the metric stream. The value uses the following syntax: ((host="<endpoint-URL>"[,type="<stream-format>"][,token="<authentication-token>"][,{httpProxy|httpsProxy}="<proxy-server>"]) [,(host="<endpoint-URL>"[,type="<stream-format>"][,token="<authentication-token>"][,{httpProxy|httpsProxy}="<proxy-server>"])]...)
+metricStreamIntvlInSec: Controls automatic metric upload, otherwise known as streaming. If the value is zero, then streaming is disabled. Otherwise, the value represents the upload interval (in seconds) for automatic uploads to the metric streaming endpoints specified by the metricStreamEndPoint attribute.
+metricStreamTags: Defines a set of metric tags, which are included in every metric observation generated by the server. The tags help to organize and group observations generated by numerous Exadata servers. The value is a JSON string containing tag and value pairs as follows: '{"<tag1>":"<value1>"[,"<tag2>":"<value2>"]...}'
+msVersion: Exadata software release number
+notificationMethod: Notification method for alerts, either 'mail', 'snmp', 'none', or 'both' for mail and snmp
+notificationPolicy: Notification method for alerts, either 'mail', 'snmp', 'none', or 'both' for mail and snmp
+pendingCoreCount: Specifies the number of active CPU cores in the database server after the next server reboot
+powerCount: Number of working power supplies and total number of power supplies, displayed as <working>/<total>
+powerStatus: Power supply status, either 'normal', 'warning', or 'critical'
+pwdExpInDays: Number of days before a user's password expires
+pwdExpWarnInDays: Number of days before a user's password expires that a warning message is issued during login attempts
+releaseImageStatus: Imaging success indicator, either 'success' or null
+releaseTrackingBug: Exadata system software patch number
+releaseVersion: Exadata system software release number
+remotePwdChangeAllowed: Specifies if a user password can be changed remotely through REST services
+restSubscriber
+rpmVersion: Exadata system software RPM version
+securityCert: Identity certificate associated with the server, either the default self-certified certificate included in the software image or a user-supplied certificate
+smtpFrom: User name that appears in the From: header of the alert notifications
+smtpFromAddr: Email address that appears in the 'From:' header of the alert notifications. This email address is not authenticated with the email server.
+smtpPort: Email server port used to send alert notifications
+smtpToAddr: Comma-separated list of email addresses for alert notification recipients, with each email address enclosed in quotation marks
+smtpUseSSL: Specifies if Secure Socket Layer (SSL) encryption is used for alert notifications
+snmpSubscriber: Specifies one or more hosts that subscribe to the SNMP alert notifications. The value uses the following syntax: ((host=<host>[,port=<port>][,community=<SNMP-community>][,type=<user-type>][,fromIP="<IP>"][,asrmPort="<ASR-manager-port>"]) [,(host=<host>[,port=<port>][,community=<SNMP-community>][,type=<user-type>][,fromIP="<IP>"][,asrmPort="<ASR-manager-port>"])]...)
+snmpUser: OS user recipient for SNMP alerts
+status: Status of the dbserver
+syslogConf: Specification for forwarding Syslog messages to remote management servers. In the value, each <selector> defines a message type, and each <node> is a target server. The <selector> and <node> specifications follow the standard syntax rules for syslog.conf. The value uses the following syntax: ('<selector> @<node>' [, '<selector> @<node>']... )
+syslogFormat: Format string for Syslog messages
+syslogInput
+temperatureReading: Current server temperature from the BMC (Celsius)
+temperatureStatus: Temperature sensor status, either 'normal', 'warning', or 'critical'
+traceLevel: Level of detail for trace messages. The value is a Java logging level, either 'SEVERE', 'WARNING', 'INFO', 'CONFIG', 'FINE', 'FINER', or 'FINEST'. The default is 'FINE'.
+upTime: Time since the system restarted (<days>, <hours>:<minutes>)
+msStatus: Management Server (MS) status
+rsStatus: Restart Server (RS) status
+bswStatus: Exascale Block Store Worker (BSW) status
+edvStatus: Exascale Direct Volume (EDV) status
+egsStatus
+esnpStatus
+ifdStatus: Exascale Instant Failure Detection (IFD) status
+
+Attributes for DIAGPACK
+
+
+Attributes for ESCLUSTER
+
+name
+adminPubKeyFingerprint1
+adminPubKeyFingerprint2
+adminPubKeyFingerprint3
+adminPassword
+leaderHostName
+leaderUrl
+
+Attributes for ESFEATURE
+
+name
+featureID
+activeVersion
+supportedVersion
+state
+mode
+impact
+participants
+instUniqueName
+
+Attributes for ESINSTANCE
+
+instUniqueName
+userID
+instID
+instInc
+processID
+instReleaseVersion
+
+Attributes for ESNODE
+
+name
+ersip
+frontendPriority
+restBackend
+restBackendServerList
+rootUrl
+localRootCert
+cellSecurityPubKey
+services
+trustStore
+virtualRouterId
+cellHostNameList
+id
+
+Attributes for IBPORT
+
+name: The name of the InfiniBand Network Fabric port
+activePort: Indicator whether the port is currently the active port for the bonded IP
+dataRate: The data rate of the InfiniBand Network Fabric port
+excBufOverrunErrs
+hcaFWVersion: The version of the host channel adapter firmware
+id: The Global unique identifier (GUID) of the InfiniBand Network Fabric port
+lid: The local identifier of the InfiniBand Network Fabric port, which is unique within the subnet
+linkDowned: The number of times the port training state machine has failed the link error recovery process
+linkIntegrityErrs: The number of link integrity errors
+linkRecovers: The number of times the port training state machine has successfully completed the link error recovery process
+physLinkState: The physical link state
+portNumber: The port number of the InfiniBand Network Fabric port
+rcvConstraintErrs: The number of received constraint errors experienced by the InfiniBand Network Fabric port
+rcvData: The number of 32-bit data words received by the InfiniBand Network Fabric port
+rcvErrs: The number of packets received at the InfiniBand Network Fabric port containing an error
+rcvRemotePhysErrs: The number of physical errors experienced at the InfiniBand Network Fabric port
+rcvSWRelayErrs
+status: The link status
+symbolErrs: The number of minor link errors experienced at the InfiniBand Network Fabric port
+vl15Dropped: The number of incoming VL15 packets dropped at the InfiniBand Network Fabric port due to resource limitations
+xmtConstraintErrs: The number of transmitted constraint errors experienced at the InfiniBand Network Fabric port
+xmtData: The number of 32-bit data words transmitted on the InfiniBand Network Fabric port
+xmtDiscards: The number of outbound packets discarded by the InfiniBand Network Fabric port because the port was down or congested
+xmtWait
+
+Attributes for LUN
+
+name: Unique name assigned to the LUN. The value may be different (or extended from) the LUN ID if the ID is not unique.
+deviceName: Operating system device name for the LUN
+diskType: The type of disk
+errorCount: Number of errors on the LUN
+id: Identifier assigned by the system
+isSystemLun: Indicator whether the disk is a system disk. If value is 'TRUE', then the disk is a system disk. If the value is 'FALSE', then the disk is not a system disk, and only has data on it.
+lunSize: Raw size of the LUN before being converted to a database server disk
+lunUID: Unique identifier assigned by the system
+overProvisioning: Indicator of the percentage of over-provisioned blocks in flash storage that are still available for a particular LUN (only used for flash disks)
+physicalDrives: Physical disk names that form the LUN
+raidLevel: RAID level used on the LUN
+lunWriteCacheMode: LUN write cache mode
+status: Status of the LUN, either 'normal', 'warning', or 'critical'
+
+Attributes for METRICCURRENT
+
+name: Unique name of the current metric
+alertState: Indicator of the alert state, either 'normal', 'warning', or 'critical'
+collection: Metric collection, either 'default' (1-minute collection interval) or 'fineGrained' (user-configured collection interval between 1 and 60 seconds)
+collectionTime: Timestamp when the metric value was collected
+metricObjectName: Name of the object being measured
+metricType: Specification for how the statistic was created or defined
+metricValue: Value of the collected metric
+objectType: Type of object being measured, such as 'CELL', 'GRIDDISK', 'FLASHCACHE', and so on
+
+Attributes for METRICDEFINITION
+
+name: Unique name of the metric definition
+description: Description of the metric
+fineGrained: Specifies if the metric is enabled for fine-grained collection
+metricType: Indicates how the statistic was created or defined, either 'cumulative', 'instantaneous', 'rate', or 'transition'
+objectType: Type of object being measured, such as 'CELL', 'GRIDDISK', 'FLASHCACHE', and so on
+retentionPolicy: Amount of time metric values are stored
+streaming: Specifies if the metric is enabled for streaming to a collection endpoint
+unit: Unit for the metric explicitly, and is related to the metric collected
+
+Attributes for METRICHISTORY
+
+name: Name of the current metric
+alertState: Indicator of the alert state, either 'normal', 'warning', or 'critical'
+collectionTime: Timestamp when the metric value was collected
+metricObjectName: Name of the object
+metricType: Specification for how the statistic was created or defined
+metricValue: Value of the collected metric
+metricValueAvg: Average value of the metric
+metricValueMax: Maximum value of the metric
+metricValueMin: Minimum value of the metric
+objectType: Type of object being measured, such as 'CELL', 'GRIDDISK', 'FLASHCACHE', and so on
+
+Attributes for PHYSICALDISK
+
+name: The name of the physical disk device
+ctrlFirmware: The hard disk controller software version
+ctrlHwVersion: The hard disk controller hardware version
+deviceId: The ID for the physical disk
+deviceName: The disk partition name
+diskType: Physical disk type
+enclosureDeviceId: Identifier for the physical disk enclosure
+errCmdTimeoutCount: The count of execution of commands related to physical disks that timed out. For example, disk firmware upgrade, listing physical disks, and so on.
+errHardReadCount: Total count of read errors on the physical disk
+errHardWriteCount: Total count of write errors on the physical disk
+errOtherCount: Total error count of all other (unknown) errors for the physical disk
+errSeekCount: Total number of disk seek errors
+errorCount: The sum of all known error counts for the physical disk
+hotPlugCount: Total number of times the disk has been pulled out and reinserted (hot plugged)
+lastFailureReason: The reason for the last physical disk failure
+luns: List of logical unit numbers (LUNs) automatically created from the physical disk (not applicable to M.2 disks)
+makeModel: Model description provided by the system
+notPresentSince: Date and time when disk detection first failed
+physicalFirmware: The version of the firmware
+physicalInsertTime: Time that the disk was inserted
+physicalInterface: Interface type used by the hard disk
+physicalPort: (Only appplicable for HP models) The physical disk port value
+physicalRPM: The physical disk spin rate in revolutions per minute (RPM)
+physicalSerial: System-assigned unique ID
+physicalSize: Size of the disk in bytes
+physicalUseType: Intended use of the disk, for example 'Data Drive'
+sectorRemapCount: Total number of physical disk sectors that have been remapped because of sector failures
+slotNumber: Slot location of physical disk
+status: Physical disk status, either 'normal', 'failed', 'not present', 'peer failure', 'poor performance', 'predictive failure', or 'write-through caching'
+
+Attributes for PRIVILEGE
+
+
+Attributes for ROLE
+
+name: Unique name of the user assigned the role
+privileges: Privileges granted to the role
+
+Attributes for THRESHOLD
+
+name: Unique name of the threshold
+comparison: Operator for comparing the metric value to the threshold value
+critical: Limit beyond which the metric value is considered to be in the critical state for generating alerts
+observation: Number of measurements over which the rate metric is averaged before being compared with the threshold value
+occurrences: Number of consecutive violations of the threshold limit by the metric value before the appropriate alert is issued
+warning: Limit beyond which the metric value is considered to be in the warning state for generating alerts
+
+Attributes for USER
+
+name: Unique name of the user
+roles: Roles assigned to the user

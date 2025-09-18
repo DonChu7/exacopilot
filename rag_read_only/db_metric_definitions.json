@@ -1,0 +1,919 @@
+[
+  {
+    "name": "DS_BBU_CHARGE",
+    "description": "Disk Controller Battery Charge",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "%"
+  },
+  {
+    "name": "DS_BBU_TEMP",
+    "description": "Disk Controller Battery Temperature",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "C"
+  },
+  {
+    "name": "DS_CPUT",
+    "description": "Percentage of time over the previous minute that the system CPUs were not idle.",
+    "fineGrained": "Enabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Annual",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "DS_CPUT_MS",
+    "description": "CPU time used by MS. The value is the number of seconds of CPU time consumed by all MS threads over the sampling period divided by the number of seconds in the sampling period and multiplied by 100. The value is nominally represented as a percentage, but the value can exceed 100 when multiple threads are busy",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "%"
+  },
+  {
+    "name": "DS_CPU_COUNT",
+    "description": "Number of CPUs on the server",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Annual",
+    "streaming": "Disabled",
+    "unit": "Number"
+  },
+  {
+    "name": "DS_CPU_POWER_CONSUMPTION",
+    "description": "CPU power consumption",
+    "fineGrained": "Enabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Watts"
+  },
+  {
+    "name": "DS_FANS",
+    "description": "Number of working fans on the server",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "Number"
+  },
+  {
+    "name": "DS_FSUT",
+    "description": "Percentage of total space on this file system that is currently used",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER_FILESYSTEM",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "%"
+  },
+  {
+    "name": "DS_MEMUT",
+    "description": "Percentage of total physical memory on this server that is currently used",
+    "fineGrained": "Enabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Annual",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "DS_MEMUT_MS",
+    "description": "Percentage of physical memory used by MS",
+    "fineGrained": "Enabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "DS_POWER_CONSUMPTION",
+    "description": "Server power consumption",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Watts"
+  },
+  {
+    "name": "DS_RUNQ",
+    "description": "Average number (over the preceding minute) of processes in the Linux run queue marked running or uninterruptible (from /proc/loadavg).",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "Number"
+  },
+  {
+    "name": "DS_SWAP_IN_BY_SEC",
+    "description": "Amount of swap pages read in KB per second",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "KB/sec"
+  },
+  {
+    "name": "DS_SWAP_OUT_BY_SEC",
+    "description": "Amount of swap pages written in KB per second",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "KB/sec"
+  },
+  {
+    "name": "DS_SWAP_USAGE",
+    "description": "Percentage of swap used",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "%"
+  },
+  {
+    "name": "DS_TEMP",
+    "description": "Temperature (Celsius) of the server, provided by the BMC",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "C"
+  },
+  {
+    "name": "DS_VIRTMEM_MS",
+    "description": "Amount of virtual memory used by MS in MB",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "MB"
+  },
+  {
+    "name": "EXW_KVMGUEST_DIRTY_BY_SEC",
+    "description": "The memory modification rate by guests on a KVM host",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "GUEST",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "EXW_KVMGUEST_DIRTY_RDMA_BY_SEC",
+    "description": "The RDMA memory modification rate by guests on a KVM host",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "GUEST",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "EXW_RDS_CONG_SEND_BLOCKED",
+    "description": "Number of non-blocked sends that were blocked due to destination congestion",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_RDS_CONG_SEND_ERROR",
+    "description": "Number of blocked sends not completed due to destination congestion",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_RDS_CONN_RESET",
+    "fineGrained": "Enabled",
+    "metricType": "Instantaneous",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_RDS_IB_MR_1M_POOL_DEPLETED",
+    "description": "Number of times the 1MB pool reached maximum capacity",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_RDS_IB_RDMA_MR_8K_POOL_DEPLETED",
+    "description": "Number of times the 8KB pool reached maximum capacity",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_RDS_IB_TX_STALLED",
+    "description": "Number of network send requests exceeding 500ms to complete",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_RDS_PING",
+    "description": "Average rds-ping latency",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "IPADDR_Q",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "us"
+  },
+  {
+    "name": "EXW_RDS_PING_0",
+    "description": "Average rds-ping latency on lane 0 (deprecated)",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "IPADDR_Q",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "us"
+  },
+  {
+    "name": "EXW_ROCE_LOCAL_ACK_TIMEOUT_ERR",
+    "description": "Refer to Nvidia (Mellanox) CNP counter documentation for 'local_ack_timeout_err'",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "DEVICE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_ROCE_NP_CNP_SENT",
+    "description": "Refer to Nvidia (Mellanox) CNP counter documentation for 'np_cpn_sent'",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "DEVICE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_ROCE_NP_ECN_MARKED_ROCE_PACKETS",
+    "description": "Refer to Nvidia (Mellanox) CNP counter documentation for 'np_ecn_marked_roce_packets'",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "DEVICE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_ROCE_PAUSE",
+    "description": "Number of pause frames on the RoCE lane",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "NETDEV_QUEUE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_ROCE_PORT_RCV_BY",
+    "description": "Number of bytes received by the RoCE port",
+    "fineGrained": "Disabled",
+    "metricType": "Cumulative",
+    "objectType": "DEVICE",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "MB"
+  },
+  {
+    "name": "EXW_ROCE_PORT_RCV_BY_SEC",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "DEVICE",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "EXW_ROCE_PORT_XMIT_BY",
+    "description": "Number of bytes transmitted by the RoCE port",
+    "fineGrained": "Disabled",
+    "metricType": "Cumulative",
+    "objectType": "DEVICE",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "MB"
+  },
+  {
+    "name": "EXW_ROCE_PORT_XMIT_BY_SEC",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "DEVICE",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "EXW_ROCE_RNR_NAK_RETRY_ERR",
+    "description": "Refer to Nvidia (Mellanox) CNP counter documentation for 'rnr_nak_retry_err'",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "DEVICE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_ROCE_RP_CNP_HANDLED",
+    "description": "Refer to Nvidia (Mellanox) CNP counter documentation for 'rp_cnp_handled'",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "DEVICE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_ROCE_RP_CNP_IGNORED",
+    "description": "Refer to Nvidia (Mellanox) CNP counter documentation for 'rp_cnp_ignored'",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "DEVICE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "EXW_ROCE_RX_BY",
+    "description": "Number of bytes received by the RoCE lane",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "NETDEV_QUEUE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "MB"
+  },
+  {
+    "name": "EXW_ROCE_RX_BY_SEC",
+    "description": "Number of bytes per second received by the RoCE lane",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "DEVICE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "EXW_ROCE_TX_BY",
+    "description": "Number of bytes transmitted by the RoCE lane",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "NETDEV_QUEUE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "MB"
+  },
+  {
+    "name": "EXW_ROCE_TX_BY_SEC",
+    "description": "Number of bytes per second transmitted by the RoCE lane",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "DEVICE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "N_HCA_MB_RCV_SEC",
+    "description": "Number of megabytes received by InfiniBand interfaces per second",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "N_HCA_MB_TRANS_SEC",
+    "description": "Number of megabytes transmitted by InfiniBand interfaces per second",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "N_IB_MB_RCV_SEC",
+    "description": "Number of megabytes received by an InfiniBand port per second",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "IBPORT",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "N_IB_MB_TRANS_SEC",
+    "description": "Number of megabytes transmitted by an InfiniBand port per second",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "IBPORT",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "N_IB_UTIL_RCV",
+    "description": "Percentage of an InfiniBand port capacity utilized for receiving data",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "IBPORT",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "N_IB_UTIL_TRANS",
+    "description": "Percentage of an InfiniBand port capacity utilized for transmitting data",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "IBPORT",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "N_IB_XMIT_DISCARDS",
+    "description": "Number of outbound packets discarded because the port was down or congested",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "IBPORT",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "N_IB_XMIT_WAIT",
+    "description": "Number of times the Infiniband port had data to transmit, but no data was sent",
+    "fineGrained": "Enabled",
+    "metricType": "Cumulative",
+    "objectType": "IBPORT",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "N_NIC_KB_RCV_SEC",
+    "description": "Number of kilobytes received by Ethernet interfaces per second",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Annual",
+    "streaming": "Disabled",
+    "unit": "KB/sec"
+  },
+  {
+    "name": "N_NIC_KB_TRANS_SEC",
+    "description": "Number of kilobytes transmitted by Ethernet interfaces per second",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "DBSERVER",
+    "retentionPolicy": "Annual",
+    "streaming": "Disabled",
+    "unit": "KB/sec"
+  },
+  {
+    "name": "OS_CPU_GNICE_PCT",
+    "description": "Percentage of CPU utilization spent to run a niced guest",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "OS_CPU_GUEST_PCT",
+    "description": "Percentage of CPU utilization spent to run a virtual processor",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "OS_CPU_IDLE_PCT",
+    "description": "Percentage of time where the CPUs were idle and the system had no outstanding I/O requests",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "%"
+  },
+  {
+    "name": "OS_CPU_IOWAIT_PCT",
+    "description": "Percentage of time where the CPUs were idle and the system had outstanding I/O requests",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "OS_CPU_IRQ_PCT",
+    "description": "Percentage of CPU utilization spent servicing hardware interrupts",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "OS_CPU_LOAD1",
+    "description": "System load average over the last 1 minute",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "Number"
+  },
+  {
+    "name": "OS_CPU_LOAD15",
+    "description": "System load average over the last 15 minutes",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "Number"
+  },
+  {
+    "name": "OS_CPU_LOAD5",
+    "description": "System load average over the last 5 minutes",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "Number"
+  },
+  {
+    "name": "OS_CPU_NICE_PCT",
+    "description": "Percentage of CPU utilization executing at the user level with nice priority",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "OS_CPU_PCT",
+    "description": "Percentage of CPU utilization over the time interval",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "OS_CPU_SOFT_PCT",
+    "description": "Percentage of CPU utilization spent servicing software interrupts",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "OS_CPU_STEAL_PCT",
+    "description": "Percentage of CPU utilization spent in involuntary wait while the hypervisor was servicing another virtual processor",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "OS_CPU_SYS_PCT",
+    "description": "Percentage of CPU utilization executing at the system level",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "OS_CPU_USR_PCT",
+    "description": "Percentage of CPU utilization executing at the user level",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "OS_IO_AQU_SZ",
+    "description": "Average size of the IO request queue for the device",
+    "fineGrained": "Enabled",
+    "metricType": "Instantaneous",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "Number"
+  },
+  {
+    "name": "OS_IO_BY_R_SEC",
+    "description": "Number of bytes read per second from the device",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "OS_IO_BY_W_SEC",
+    "description": "Number of bytes written per second to the device",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "OS_IO_RQ_R_SEC",
+    "description": "Number of read requests completed per second for the device",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "IO/sec"
+  },
+  {
+    "name": "OS_IO_RQ_R_SZ",
+    "description": "Average size of read IO requests issued to the device",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "KB"
+  },
+  {
+    "name": "OS_IO_RQ_SZ",
+    "description": "Average size of IO requests issued to the device",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "KB"
+  },
+  {
+    "name": "OS_IO_RQ_W_SEC",
+    "description": "Number of write requests completed per second for the device",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "IO/sec"
+  },
+  {
+    "name": "OS_IO_RQ_W_SZ",
+    "description": "Average size of write IO requests issued to the device",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "KB"
+  },
+  {
+    "name": "OS_IO_TM_RQ",
+    "description": "Average service time of the IO requests issued to the device",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "ms/request"
+  },
+  {
+    "name": "OS_IO_UTIL_PCT",
+    "description": "Percentage of time during which I/O requests were issued to the device",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "%"
+  },
+  {
+    "name": "OS_IO_WT_RQ",
+    "description": "Average latency of the IO requests issued to the device",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "ms/request"
+  },
+  {
+    "name": "OS_IO_WT_R_RQ",
+    "description": "Average latency of read requests from the device",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "ms/request"
+  },
+  {
+    "name": "OS_IO_WT_W_RQ",
+    "description": "Average latency of write requests to the device",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "DISK",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "ms/request"
+  },
+  {
+    "name": "OS_MEM_BY_AVAIL",
+    "description": "Total available server memory",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "MB"
+  },
+  {
+    "name": "OS_MEM_BY_FREE",
+    "description": "Total free server memory",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "MB"
+  },
+  {
+    "name": "OS_MEM_BY_TOTAL",
+    "description": "Total usable server memory",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "MB"
+  },
+  {
+    "name": "OS_MEM_BY_USED",
+    "description": "Total used server memory",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "MB"
+  },
+  {
+    "name": "OS_NET_RX_BY_SEC",
+    "description": "Number of bytes received by the network interface",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "NET_INTERFACE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "OS_NET_RX_CRC_ERROR_SEC",
+    "description": "Number of packets with a CRC error received on the network interface",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "NET_INTERFACE",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "/sec"
+  },
+  {
+    "name": "OS_NET_RX_DRP_SEC",
+    "description": "Number of packets dropped by the network interface",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "NET_INTERFACE",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "packets/sec"
+  },
+  {
+    "name": "OS_NET_RX_FRAME_ERROR_SEC",
+    "description": "Number of receiver-side frame alignment errors on the network interface",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "NET_INTERFACE",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "/sec"
+  },
+  {
+    "name": "OS_NET_TX_BY_SEC",
+    "description": "Number of bytes transmitted by the network interface",
+    "fineGrained": "Enabled",
+    "metricType": "Rate",
+    "objectType": "NET_INTERFACE",
+    "retentionPolicy": "Default",
+    "streaming": "Enabled",
+    "unit": "MB/sec"
+  },
+  {
+    "name": "OS_NET_TX_DRP_SEC",
+    "description": "Number of packets dropped by the network interface",
+    "fineGrained": "Disabled",
+    "metricType": "Rate",
+    "objectType": "NET_INTERFACE",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "packets/sec"
+  },
+  {
+    "name": "OS_SWAP_BY_FREE",
+    "description": "Total amount of free swap space",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "KB"
+  },
+  {
+    "name": "OS_SWAP_BY_TOTAL",
+    "description": "Total amount of swap space",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "KB"
+  },
+  {
+    "name": "OS_SWAP_BY_USED",
+    "description": "Total amount of used swap space",
+    "fineGrained": "Disabled",
+    "metricType": "Instantaneous",
+    "objectType": "SERVER",
+    "retentionPolicy": "Default",
+    "streaming": "Disabled",
+    "unit": "KB"
+  }
+]

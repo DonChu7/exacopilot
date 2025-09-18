@@ -1,0 +1,654 @@
+Attributes for ACTIVEREQUEST
+
+name: Unique name of the active request
+asmDiskGroupNumber: Number of the Oracle ASM disk group
+asmFileIncarnation: Incarnation number of the Oracle ASM file
+asmFileNumber: Number of the Oracle ASM file
+consumerGroupID: Identifier of the consumer group
+consumerGroupName: Name of the consumer group
+dbID: Database unique name
+dbName: Database name
+dbRequestID: Identifier of the database request
+fileType: File type associated with the request
+id: Unique identifier of the active request
+instanceNumber: Instance number associated with the request
+ioBytes: Number of bytes of I/O against the grid disk in the current session
+ioBytesSofar: Number of total bytes of I/O
+ioGridDisk: Grid disk used by the request
+ioOffset: I/O offset location on the grid disk
+ioReason: Reason for I/O activity
+ioType: Type of active request
+objectNumber: Object number associated with the request
+parentID: Identifier of the parent request
+pdbID: Identifier of the pluggable database
+requestState: Active request state
+sessionID: Identifier of the session
+sessionSerNumber: Serial number of the database session
+sqlID: Identifier of the SQL command associated with the request
+tableSpaceNumber: Tablespace number associated with the request
+
+Attributes for ALERTDEFINITION
+
+name: Identifier for the alert
+alertShortName: Abbreviated name for the alert. If the alert is based on a metric, then the short name is the same as the corresponding metric name attribute.
+alertSource: Source of the alert, such as 'BMC' or 'ADR'
+alertType: Alert type, either 'stateful' or 'stateless'
+description: Description for the alert
+metricName: Metric name if the alert is based on a metric
+
+Attributes for ALERTHISTORY
+
+name: Unique identifier for the alert
+alertAction: Recommended action to perform for the alert
+alertDescription: Description for the alert
+alertMessage: Brief explanation of the alert
+alertSequenceID: Unique sequence ID for the alert. When an alert changes its state, such as 'warning' to 'critical' or 'critical' to 'clear', another occurrence of the alert is created with the same sequence number and the timestamp of the transition.
+alertShortName: Abbreviated name for the alert. If the alert is based on a metric, then the short name is the same as the corresponding metric name attribute.
+alertType: Alert type, either 'stateful' or 'stateless'
+beginTime: Timestamp when an alert changes its state
+endTime: Timestamp for the end of the period when an alert changes its state
+examinedBy: Administrator who reviewed the alert
+failedMail: Intended e-mail recipient when a notification failed
+failedSNMP: Intended SNMP subscriber when a notification failed
+metricObjectName: Object, such as cell disk or grid disk, for which a metric threshold has caused an alert
+metricValue: Value of the metric that caused the alert
+notificationState: Number indicating progress in notifying subscribers to alert messages
+releaseVersion: Exadata system software release version
+rpmVersion: Exadata system software RPM version
+sequenceBeginTime: Timestamp when an alert sequence ID is first created
+serviceRequestLink: The URL to the service request associated with the alert
+serviceRequestNumber: The service request number associated with the alert
+severity: Severity level, either 'clear', 'info', 'warning', or 'critical'
+
+Attributes for CELL
+
+name: Unique cell name
+accessLevelPerm: Specifies the access level at which the cell runs by default, either 'remoteLoginEnabled' or 'remoteLoginDisabled'
+accessLevelTemp: Duration of time in which the access level is temporarily changed from the setting of accessLevelPerm
+accountLockInDays: Number of days after a password expires before the user account is locked
+bbuStatus: Status of the hard disk controller battery-backed unit (BBU)
+bootDeviceStatus: Status of the boot device device
+bsmEvents
+bsmStatus: Exascale Block Store Manager (BSM) status
+bswEvents
+bswStatus: Exascale Block Store Worker (BSW) status
+cellsrvStatus: Cell Server (CELLSRV) status
+cellVersion: Cell software release number
+columnarCachePersMode: Controls the persistent columnar cache feature, either 'on', 'off', or 'auto'
+comment: User-specified comment
+cpuCount: Number of storage server CPUs
+dbPerfDataSuppress: Statistics from the specified databases are not reported in Automatic Workload Repository (AWR) reports
+diagHistoryDays: Retention period for ADR files (in days). The default is 7 days.
+diagPackEmailAttach
+diagPackUploadEnabled: Specifies if a diagpack is included as an attachment in the alert email. The default is 'TRUE'.
+doNotServiceLEDStatus: Status of the storage server Do Not Service LED, either 'on' or 'off'
+ebtsEvents
+egsEvents
+egsStatus
+eighthRack: If 'enabled', specifies that the cell is configured as an Eighth Rack storage server
+emailFormat: Format of alert email messages, either 'html' or 'text'
+emailSubscriber: List of alert notification subscriber email addresses
+ersEvents
+ersStatus
+esnpEvents
+events: Event string to control cell debugging and tracing
+exacliEnabled: Specifies if EXACLI is enabled. The default is 'TRUE'.
+fanCount: Number of working fans and total number of fans, displayed as <working>/<total>
+fanStatus: Fan status, either 'normal', 'warning', or 'critical'
+flashCacheMode: Flash cache mode, either 'writethrough' or 'writeback'. The default is 'writethrough'.
+httpsAccess: Control list of IP addresses with access to the Exadata RESTful Service using HTTPs
+id: Storage server hardware global unique identifier (GUID)
+ifdEvents
+ifdStatus: Exascale Instant Failure Detection (IFD) status
+ilomIpAddress: Integrated Lights Out Manager (ILOM) service processor (SP) IP address
+ilomSyslogClients: The remote destination to forward Syslog messages from the Integrated Lights Out Manager (ILOM) service processor (SP). The value is the hostname or IP address of a remote log server or a comma-separated list of up to two log servers.
+interconnect1: Network interconnect for the cell. For example, 're0' or 'stre0'.
+interconnect2
+interconnect3
+interconnect4
+interconnect5
+interconnect6
+interconnect7
+interconnect8
+interconnectCount: Number of active RDMA network interfaces
+iormBoost: Specifies the IORM boost, which is a measure of the effect of IORM. The IORM boost is the ratio of the cumulative number of positions in the I/O queue that were skipped because of IORM scheduling over the number of scheduled I/Os. The ratio is calculated every minute by sampling the changes in the underlying values.
+IOTimeoutThreshold: Specifies the I/O timeout threshold. If cell I/O takes longer than the specified threshold, the I/O is canceled and redirected to another mirror copy of the data
+ipaddress1: RDMA Network Fabric (storage network) IP address
+ipaddress2
+ipaddress3
+ipaddress4
+ipaddress5
+ipaddress6
+ipaddress7
+ipaddress8
+kernelVersion: Host operating system kernel software version
+listeningInterface: List of interfaces that MS listens on for Exadata RESTful service HTTPs connections
+location: User-specified storage server hardware location
+locatorLEDStatus: Status of storage server Locate LED, either 'on' or 'off'
+mailServer: Fully-qualified domain name of the email relay server used to send alert notifications
+makeModel: Storage server hardware make and model
+managementIpAddress: Management network IP address
+memoryGB: Storage server memory size (in GB)
+metricCollection: Specifies if Management Server (MS) performs metric collection. If 'FALSE', then no metric collection or alert mining occurs in the cell. The default setting is 'TRUE'.
+metricFGCollIntvlInSec: Controls fine-grained metric collection. If the value is between 1 and 60, fine-grained metric collection is enabled, and the value represents the collection interval (in seconds). If the value is zero, then fine-grained metric collection is disabled.
+metricHistoryDays: Retention period for the default metric history (in days). The default is 7 days.
+metricStreamEndPoint: Specifies one or more collection endpoints that automatically receive the metric stream. The value uses the following syntax: ((host="<endpoint-URL>"[,type="<stream-format>"][,token="<authentication-token>"][,{httpProxy|httpsProxy}="<proxy-server>"]) [,(host="<endpoint-URL>"[,type="<stream-format>"][,token="<authentication-token>"][,{httpProxy|httpsProxy}="<proxy-server>"])]...)
+metricStreamIntvlInSec: Controls automatic metric upload, otherwise known as streaming. If the value is zero, then streaming is disabled. Otherwise, the value represents the upload interval (in seconds) for automatic uploads to the metric streaming endpoints specified by the metricStreamEndPoint attribute.
+metricStreamTags: Defines a set of metric tags, which are included in every metric observation generated by the server. The tags help to organize and group observations generated by numerous Exadata servers. The value is a JSON string containing tag and value pairs as follows: '{"<tag1>":"<value1>"[,"<tag2>":"<value2>"]...}'
+msStatus: Management Server (MS) status
+notificationMethod: Notification method for alerts, either 'mail', 'snmp', 'none', or 'both' for mail and snmp
+notificationPolicy: Notification method for alerts, either 'mail', 'snmp', 'none', or 'both' for mail and snmp
+offloadGroupEvents: Used only under the guidance of Oracle Support
+powerCount: Number of working power supplies and total number of power supplies, displayed as <working>/<total>
+powerStatus: Power supply status, either 'normal', 'warning', or 'critical'
+pwdExpInDays: Number of days before a user's password expires
+pwdExpWarnInDays: Number of days before a user's password expires that a warning message is issued during login attempts
+rackName: User-specified rack name
+releaseImageStatus: Imaging success indicator, either 'success' or null
+releaseTrackingBug: Exadata system software patch number
+releaseVersion: Exadata system software release number
+remotePwdChangeAllowed: Specifies if a user password can be changed remotely through REST services
+rescuePlan: Specifies the cell rescue plan. The rescue plan is a list of commands to run after a server rescue operation to restore various settings to the last known values, such as IORM plans, thresholds, and notifications.
+restSubscriber
+rollbackVersion: Inactive image version maintained on the cell, which is reinstated if a patchmgr rollback operation is invoked
+rpmVersion: Exadata system software RPM version
+rsStatus: Restart Server (RS) status
+securityCert: Identity certificate associated with the cell, either the default self-certified certificate included in the software image or a user-supplied certificate
+siteName: User-specified site name associated with the storage server
+smtpFrom: User name that appears in the From: header of the alert notifications
+smtpFromAddr: Email address that appears in the 'From:' header of the alert notifications. This email address is not authenticated with the email server.
+smtpPort: Email server port used to send alert notifications
+smtpToAddr: Comma-separated list of email addresses for alert notification recipients, with each email address enclosed in quotation marks
+smtpUseSSL: Specifies if Secure Socket Layer (SSL) encryption is used for alert notifications
+snmpSubscriber: Specifies one or more hosts that subscribe to the SNMP alert notifications. The value uses the following syntax: ((host=<host>[,port=<port>][,community=<SNMP-community>][,type=<user-type>][,fromIP="<IP>"][,asrmPort="<ASR-manager-port>"]) [,(host=<host>[,port=<port>][,community=<SNMP-community>][,type=<user-type>][,fromIP="<IP>"][,asrmPort="<ASR-manager-port>"])]...)
+snmpUser: OS user recipient for SNMP alerts
+status: Cell status
+storageIndexPersMode: Controls the persistent storage index feature, either 'on', 'off', or 'auto'
+sysedsEvents
+sysEdsStatus: Exascale System Data Services (SYSEDS) status
+syslogConf: Specification for forwarding Syslog messages to remote management servers. In the value, each <selector> defines a message type, and each <node> is a target server. The <selector> and <node> specifications follow the standard syntax rules for syslog.conf. The value uses the following syntax: ('<selector> @<node>' [, '<selector> @<node>']... )
+syslogFormat: Format string for Syslog messages
+syslogInput
+temperatureReading: Current server temperature from the BMC (Celsius)
+temperatureStatus: Temperature sensor status, either 'normal', 'warning', or 'critical'
+traceLevel: Level of detail for trace messages. The value is a Java logging level, either 'SEVERE', 'WARNING', 'INFO', 'CONFIG', 'FINE', 'FINER', or 'FINEST'. The default is 'FINE'.
+upTime: Time since the system restarted (<days>, <hours>:<minutes>)
+usredsEvents
+usrEdsStatus
+
+Attributes for CELLDISK
+
+name: Unique name of the cell disk
+comment: User comment for the cell disk
+creationTime: Timestamp when the cell disk was created
+deviceName: Operating system device name for the LUN
+devicePartition: The disk partition name
+diskType: The type of disk
+errorCount: Number of errors that occurred on the cell disk
+flushError: Errors reported by while flushing the flash cache
+flushStatus: The current status of the flash cache flush operation
+freeSpace: Amount of unused space available on the cell disk
+id: Global unique identifier (GUID) that is generated when the cell disk is created
+physicalDisk: Name of the physical disk on which the cell disk is located
+size: Total size of the cell disk
+status: Current status of the cell disk
+
+Attributes for CLUSTER
+
+name
+flashCacheLimit
+flashCacheMin
+flashCacheSize
+iormLimit
+iormShare
+lastRequestTime
+pmemCacheLimit
+pmemCacheMin
+pmemCacheSize
+xrmemCacheLimit
+xrmemCacheMin
+xrmemCacheSize
+
+Attributes for DATABASE
+
+name: The database name
+asmClusterName: The cluster name
+databaseID: The unique identifier for the database
+flashCacheLimit: Specifies a "soft" maximum size in flash cache if the flash cache is not full
+flashCacheMin: The minimum size in the flash cache that is guaranteed for a database even if the blocks are cold
+flashCacheSize
+iormDiskLimit: The hard disk I/O utilization limit for the database
+iormDiskShare: The relative share of disk I/O resources that is available to the database. A higher share value implies higher priority and more access to the I/O resources.
+iormFlashLimit: The flash disk I/O utilization limit for the database
+iormFlashShare: The relative share of flash I/O resources that is available to the database. A higher share value implies higher priority and more access to the I/O resources.
+lastRequestTime: The timestamp of the last request from the database
+pmemCacheLimit: Specifies a "soft" maximum size in PMEM cache if the PMEM cache is not full
+pmemCacheMin: The minimum size in the PMEM cache that is guaranteed for a database even if the blocks are cold
+pmemCacheSize
+profile: The IORM profile associated with the database
+sharedFlashCacheLimit: The soft maximum flash cache allowance shared by the CDB and associated PDBs. This soft limit can be exceeded when additional space is available.
+sharedFlashCacheMin: The minimum flash cache allowance shared by the CDB and associated PDBs. This allowance is guaranteed for the database, even if the data is cold relative to other databases.
+sharedFlashCacheSize: The hard maximum flash cache allowance shared by the CDB and associated PDBs. This is a hard limit that cannot be exceeded.
+sharedPmemCacheSize: The hard maximum PMEM cache allowance shared by the CDB and associated PDBs. This is a hard limit that cannot be exceeded.
+sharedXRMemCacheLimit: The soft maximum XRMEM cache allowance shared by the CDB and associated PDBs. This soft limit can be exceeded when additional space is available.
+sharedXRMemCacheMin: The minimum XRMEM cache allowance shared by the CDB and associated PDBs. This allowance is guaranteed for the database, even if the data is cold relative to other databases.
+sharedXRMemCacheSize: The hard maximum XRMEM cache allowance shared by the CDB and associated PDBs. This is a hard limit that cannot be exceeded.
+vaultName: Exascale vault name
+xrmemCacheLimit: Specifies the maximum amount of XRMEM cache space the database can occupy when the cache is full. The database can exceed the limit when the XRMEM cache is not full.
+xrmemCacheMin: Specifies the minimum amount of XRMEM cache space that is guaranteed for the database
+xrmemCacheSize: Specifies the maximum amount of XRMEM cache space available to the database under any circumstances
+
+Attributes for DIAGPACK
+
+
+Attributes for ESCLUSTER
+
+name
+adminPassword
+adminPubKeyFingerprint1
+adminPubKeyFingerprint2
+adminPubKeyFingerprint3
+leaderHostName
+leaderUrl
+
+Attributes for ESNODE
+
+name
+cellHostNameList
+cellSecurityPubKey
+ersip
+frontendPriority
+id
+localRootCert
+restBackend
+restBackendServerList
+rootUrl
+services
+trustStore
+virtualRouterId
+
+Attributes for FLASHCACHE
+
+name: Unique name of the Exadata Smart Flash Cache
+cellDisk: Cell disk names that contain Exadata Smart Flash Cache
+creationTime: Timestamp when the Exadata Smart Flash Cache was created
+degradedCelldisks: List of cell disks configured for cache but not currently available
+effectiveCacheSize: Usable cache size after deducting space on unavailable cell disks
+id: Global unique identifier (GUID) that is generated when the Exadata Smart Flash Cache is created
+size: Total size of the Exadata Smart Flash Cache
+status: Current status of the Exadata Smart Flash Cache
+
+Attributes for FLASHCACHECONTENT
+
+cachedKeepSize: Size
+cachedSize
+cachedWriteSize
+clusterName: Oracle Grid Infrastructure cluster name
+columnarCacheSize: Size
+columnarKeepSize: Size
+dbID: Database unique name identifier
+dbUniqueName: Database unique name
+hitCount: Number of I/Os which read data from flash cache for the object
+hoursToExpiration: Number of hours from last access before the object is downgraded from the flash cache keep area
+missCount: Number of I/Os which read data from disk for the object
+objectNumber: Oracle Database dictionary object number of the database object
+tableSpaceNumber: Tablespace number associated with the database object
+vaultID
+
+Attributes for FLASHLOG
+
+name: Unique name of Oracle Exadata Smart Flash Log
+cellDisk: Names of the cell disks that contain Oracle Exadata Smart Flash Log
+creationTime: Timestamp when Oracle Exadata Smart Flash Log was created
+degradedCelldisks: List of cell disks configured for Oracle Exadata Smart Flash Log, but not currently available
+effectiveSize: Size of available Oracle Exadata Smart Flash Log after deducting space on unavailable cell disks
+efficiency: Efficiency of Oracle Exadata Smart Flash Log expressed as a percentage
+id: Global unique identifier (GUID) generated when Oracle Exadata Smart Flash Log is created
+size: Total size of Oracle Exadata Smart Flash Log
+status: Current status of Oracle Exadata Smart Flash Log, such as 'normal', 'warning' or 'critical'
+
+Attributes for GRIDDISK
+
+name: Unique name of the grid disk
+asmDeactivationOutcome: Indicator whether the grid disk can be deactivated without loss of data. A value of 'YES' indicates the grid disk can be deactivated without data loss.
+asmDiskGroupName: Name of the Oracle ASM disk group
+asmDiskGroupType
+asmDiskName: Name of the Oracle ASM disk
+asmDiskRepairTime: The amount of time the grid disk can remain offline before it is dropped by Oracle ASM
+asmDiskSize: Size of the Oracle ASM disk
+asmFailGroupName: Name of the Oracle ASM failure group
+asmModeStatus: Indicator shows the current Oracle ASM usage of the grid disk
+availableTo: Names of the clients that can access the grid disk
+cachedBy: The name of the flash disks that are currently caching data in write-back mode for the grid disk
+cachingPolicy: The flash caching policy for the grid disk, either 'default' or 'none'
+cellDisk: Name of the cell disk that contains the grid disk
+comment: User-supplied text string
+creationTime: Timestamp when the grid disk was created
+diskType: The type of disk
+errorCount: Count of hardware errors detected by the cell disk containing the grid disk
+extentStore
+groupName
+id: Global unique identifier (GUID) that is generated when the grid disk is created
+poolDiskStatus: Status of the Exascale pool disk
+size: Total size of the grid disk
+sizeAllocated: Total used space (applies only to sparse grid disks)
+spaceUsed: Total used space (applies only to Exascale grid disks)
+sparse: Whether the grid disk is a sparse disk
+status: Current status of the grid disk
+storagePool: Name of the Exascale storage pool that uses the grid disk (only applies if the grid disk is configured as an Exascale pool disk)
+virtualSize: The size of the disk group for the sparse grid disks
+
+Attributes for IBPORT
+
+name: The name of the InfiniBand Network Fabric port
+activePort: Indicator whether the port is currently the active port for the bonded IP
+dataRate: The data rate of the InfiniBand Network Fabric port
+excBufOverrunErrs
+hcaFWVersion: The version of the host channel adapter firmware
+id: The Global unique identifier (GUID) of the InfiniBand Network Fabric port
+lid: The local identifier of the InfiniBand Network Fabric port, which is unique within the subnet
+linkDowned: The number of times the port training state machine has failed the link error recovery process
+linkIntegrityErrs: The number of link integrity errors
+linkRecovers: The number of times the port training state machine has successfully completed the link error recovery process
+physLinkState: The physical link state
+portNumber: The port number of the InfiniBand Network Fabric port
+rcvConstraintErrs: The number of received constraint errors experienced by the InfiniBand Network Fabric port
+rcvData: The number of 32-bit data words received by the InfiniBand Network Fabric port
+rcvErrs: The number of packets received at the InfiniBand Network Fabric port containing an error
+rcvRemotePhysErrs: The number of physical errors experienced at the InfiniBand Network Fabric port
+rcvSWRelayErrs
+status: The link status
+symbolErrs: The number of minor link errors experienced at the InfiniBand Network Fabric port
+vl15Dropped: The number of incoming VL15 packets dropped at the InfiniBand Network Fabric port due to resource limitations
+xmtConstraintErrs: The number of transmitted constraint errors experienced at the InfiniBand Network Fabric port
+xmtData: The number of 32-bit data words transmitted on the InfiniBand Network Fabric port
+xmtDiscards: The number of outbound packets discarded by the InfiniBand Network Fabric port because the port was down or congested
+xmtWait
+
+Attributes for IORMPLAN
+
+name: Unique name of the interdatabase plan, which is automatically set to '<cellname>_IORMPLAN'
+catPlan: Allocation plan for the categories set up in the databases using the cell
+clusterPlan: Allocation plan for the cluster using the cell
+dbPlan: Allocation plan for the databases using the cell
+objective: Optimization mode for IORM
+status: Current status of the interdatabase plan
+
+Attributes for IORMPROFILE
+
+name
+asmClusterName
+
+Attributes for KEY
+
+name: Name of the key
+key: Random hexadecimal string used to assign client keys
+type: The type of key
+
+Attributes for LUN
+
+name: Unique name assigned to the LUN. The value may be different (or extended from) the LUN ID if the ID is not unique.
+cellDisk: Name of the flash-based cell disk associated with the LUN (not used for LUNs based on hard disks)
+deviceName: Operating system device name for the LUN
+diskType: The type of disk
+errorCount: Number of errors on the LUN
+id: Identifier assigned by the system
+isSystemLun: Indicator whether the disk is a system disk. If value is 'TRUE', then the disk is a system disk. If the value is 'FALSE', then the disk is not a system disk, and only has data on it.
+lunSize: Raw size of the LUN before being converted to a cell disk
+lunUID: Unique identifier assigned by the system
+lunWriteCacheMode: LUN write cache mode
+overProvisioning: Indicator of the percentage of over-provisioned blocks in flash storage that are still available for a particular LUN (only used for flash disks)
+physicalDrives: Physical disk names that form the LUN
+raidLevel: RAID level used on the LUN
+status: Status of the LUN, either 'normal', 'warning', or 'critical'
+
+Attributes for METRICCURRENT
+
+name: Unique name of the current metric
+alertState: Indicator of the alert state, either 'normal', 'warning', or 'critical'
+collection: Metric collection, either 'default' (1-minute collection interval) or 'fineGrained' (user-configured collection interval between 1 and 60 seconds)
+collectionTime: Timestamp when the metric value was collected
+metricObjectName: Name of the object being measured
+metricType: Specification for how the statistic was created or defined
+metricValue: Value of the collected metric
+objectType: Type of object being measured, such as 'CELL', 'GRIDDISK', 'FLASHCACHE', and so on
+
+Attributes for METRICDEFINITION
+
+name: Unique name of the metric definition
+description: Description of the metric
+fineGrained: Specifies if the metric is enabled for fine-grained collection
+metricType: Indicates how the statistic was created or defined, either 'cumulative', 'instantaneous', 'rate', or 'transition'
+objectType: Type of object being measured, such as 'CELL', 'GRIDDISK', 'FLASHCACHE', and so on
+retentionPolicy: Amount of time metric values are stored
+streaming: Specifies if the metric is enabled for streaming to a collection endpoint
+unit: Unit for the metric explicitly, and is related to the metric collected
+
+Attributes for METRICHISTORY
+
+name: Name of the current metric
+alertState: Indicator of the alert state, either 'normal', 'warning', or 'critical'
+collectionTime: Timestamp when the metric value was collected
+metricObjectName: Name of the object
+metricType: Specification for how the statistic was created or defined
+metricValue: Value of the collected metric
+metricValueAvg: Average value of the metric
+metricValueMax: Maximum value of the metric
+metricValueMin: Minimum value of the metric
+objectType: Type of object being measured, such as 'CELL', 'GRIDDISK', 'FLASHCACHE', and so on
+
+Attributes for METRICSTREAM
+
+name: Unique name of the current metric
+collectionTime: Timestamp when the metric value was collected
+metricObjectName: Name of the object being measured
+metricType: Specification for how the statistic was created or defined
+metricValue: Value of the collected metric
+objectType: Type of object being measured, such as 'CELL', 'GRIDDISK', 'FLASHCACHE', and so on
+
+Attributes for OFFLOADGROUP
+
+name: The name of the offload group
+autoStart: Whether the offload server associated with the offload group is dynamically started, either 'true' or 'false'
+comment: An optional comment
+creationTime: The time when the offload group was created
+id: An identifier for the offload group
+isSystemGroup: Whether the offload group was created by the system software, either 'true' or 'false'
+package
+runtimeState: The current state of the offload group process, either 'running' or 'stopped'
+
+Attributes for PHYSICALDISK
+
+name: The name of the physical disk device
+ctrlFirmware: The hard disk controller software version
+ctrlHwVersion: The hard disk controller hardware version
+deviceId: The ID for the physical disk
+deviceName: The disk partition name
+diskType: Physical disk type
+enclosureDeviceId: Identifier for the physical disk enclosure
+errCmdTimeoutCount: The count of execution of commands related to physical disks that timed out. For example, disk firmware upgrade, listing physical disks, and so on.
+errHardReadCount: Total count of read errors on the physical disk
+errHardWriteCount: Total count of write errors on the physical disk
+errorCount: The sum of all known error counts for the physical disk
+errOtherCount: Total error count of all other (unknown) errors for the physical disk
+errSeekCount: Total number of disk seek errors
+hotPlugCount: Total number of times the disk has been pulled out and reinserted (hot plugged)
+lastFailureReason: The reason for the last physical disk failure
+luns: List of logical unit numbers (LUNs) automatically created from the physical disk (not applicable to M.2 disks)
+makeModel: Model description provided by the system
+notPresentSince: Date and time when disk detection first failed
+physicalFirmware: The version of the firmware
+physicalInsertTime: Time that the disk was inserted
+physicalInterface: Interface type used by the hard disk
+physicalPort: (Only appplicable for HP models) The physical disk port value
+physicalRPM: The physical disk spin rate in revolutions per minute (RPM)
+physicalSerial: System-assigned unique ID
+physicalSize: Size of the disk in bytes
+physicalUseType: Intended use of the disk, for example 'Data Drive'
+sectorRemapCount: Total number of physical disk sectors that have been remapped because of sector failures
+slotNumber: Slot location of physical disk
+status: Physical disk status, either 'normal', 'failed', 'not present', 'peer failure', 'poor performance', 'predictive failure', or 'write-through caching'
+
+Attributes for PLUGGABLEDATABASE
+
+name: The name of the pluggable database (PDB)
+asmClusterName: The Oracle ASM cluster name or alias
+containerName: The name of the container database (CDB)
+flashCacheLimit: The maximum amount of flash cache space available to the PDB
+flashCacheMin: The minimum amount of flash cache space available to the PDB
+flashCacheSize
+iormDiskLimit: The hard disk I/O utilization limit for the PDB
+iormFlashLimit: The flash disk I/O utilization limit for the PDB
+iormShare: The IORM share number for the PDB
+pdbID: The ID for the PDB
+pmemCacheLimit: The maximum amount of PMEM cache space available to the PDB
+pmemCacheMin: The minimum amount of PMEM cache space available to the PDB
+pmemCacheSize
+sharedFlashCacheLimit
+sharedFlashCacheMin
+sharedFlashCacheSize
+sharedPmemCacheSize
+sharedXRMemCacheLimit
+sharedXRMemCacheMin
+sharedXRMemCacheSize
+vaultName
+xrmemCacheLimit
+xrmemCacheMin
+xrmemCacheSize
+
+Attributes for PRIVILEGE
+
+
+Attributes for QUARANTINE
+
+name: Identifier of the quarantine
+asmClusterId: Identifier of the ASM cluster
+baseSnapshotID
+catDBPlan: The name of the category plan
+cellsrvChecksum: Checksum of the CELLSRV binary
+clientPID: The process identifier for the client process which crashed the cell
+clusterDBPlan
+clusterName
+comment: Comment for the quarantine
+conDbUniqueID: The container database unique ID for the quarantine
+conDbUniqueName: The container database unique name for the quarantine
+crashReason: Reason for the crash
+creationTime: Quarantine creation time
+dbUniqueID: The database unique ID for the quarantine
+dbUniqueName: The database unique name for the quarantine
+extentID
+fineGrainControl
+fineGrainValue
+incidentID: The incident identifier of the crash that caused the quarantine creation
+interDBPlan: The name of the interdatabase resource plan
+intraDBPlan: The name of the intradatabase resource plan
+ioBytes: The bytes of quarantined disk region (only applicable to disk region quarantine)
+ioGridDisk: The grid disk name for quarantined disk region (only applicable to disk region quarantine)
+ioOffset: The I/O offset for quarantined disk region (only applicable to disk region quarantine)
+objectID
+planLineID: The SQL Plan Line identifier (only applicable to SQL Plan quarantine)
+quarantineMode
+quarantinePlan: This is usually SYSTEM
+quarantineReason: The reason for creation of the quarantine
+quarantineType: Specifies the type of quarantine to be created
+remoteHostName: The host name of the remote host that ran the client process that crashed the cell
+rpmVersion: The RPM version of the cell being used when the cell crashed
+sqlID: The SQLID of the SQL statement that crashed the cell
+sqlPlanHashValue: The SQL Plan hash value (only applicable to SQL Plan quarantine)
+tablespaceNum
+
+Attributes for ROLE
+
+name: Unique name of the user assigned the role
+privileges: Privileges granted to the role
+
+Attributes for SOFTWAREHISTORY
+
+name: The name of the software update
+status: The status of the software update
+
+Attributes for SOFTWAREUPDATE
+
+name: The name of the patch to use in the update
+frequency: The frequency of automatic software updates
+status: The status of the software update
+store: The URL for the location of the software update file
+time: The specified date and time at which the software update should be performed
+timeLimitInMinutes: The number of minutes the cell will spend waiting to update the software before canceling and issuing an alert
+
+Attributes for THRESHOLD
+
+name: Unique name of the threshold
+comparison: Operator for comparing the metric value to the threshold value
+critical: Limit beyond which the metric value is considered to be in the critical state for generating alerts
+observation: Number of measurements over which the rate metric is averaged before being compared with the threshold value
+occurrences: Number of consecutive violations of the threshold limit by the metric value before the appropriate alert is issued
+warning: Limit beyond which the metric value is considered to be in the warning state for generating alerts
+
+Attributes for USER
+
+name: Unique name of the user
+roles: Roles assigned to the user
+
+Attributes for VAULT
+
+name
+flashCacheMin
+flashCacheSize
+iormDiskLimit
+iormDiskShare
+iormFlashLimit
+iormFlashShare
+lastRequestTime
+pmemCacheMin
+pmemCacheSize
+vaultID
+xrmemCacheMin
+xrmemCacheSize
+
+Attributes for VOLUME
+
+name
+flashCacheSize
+iormDiskLimit
+iormFlashLimit
+lastRequestTime
+pmemCacheSize
+vaultName
+volumeID
+xrmemCacheSize
+
+Attributes for XRMEMCACHE
+
+name: Unique name of the cache
+creationTime: Timestamp when the cache was created
+effectiveCacheSize: Usable cache size after deducting space on unavailable cell disks
+
+Attributes for XRMEMCACHECONTENT
+
+cachedKeepSize
+cachedSize
+cachedWriteSize
+clusterName
+columnarCacheSize
+columnarKeepSize
+dbID
+dbUniqueName
+hitCount
+hoursToExpiration
+missCount
+objectNumber
+tableSpaceNumber
+vaultID
+
+Attributes for XRMEMLOG
+
+name: Unique name of the persistent memory (PMEM) log accelerator
+cellDisk: Names of the cell disks that contain the persistent memory (PMEM) log accelerator
+creationTime: Timestamp when the persistent memory (PMEM) log accelerator was created
+degradedCelldisks: List of cell disks configured for the persistent memory (PMEM) log accelerator
+effectiveSize: Effective size of the persistent memory (PMEM) log accelerator after deducting space on unavailable cell disks
+efficiency: Efficiency of the persistent memory (PMEM) log accelerator, expressed as a percentage
+id: Global unique identifier (GUID) generated when the persistent memory (PMEM) log accelerator is created
+size: Total size of the persistent memory (PMEM) log accelerator
+status: Current status of the persistent memory (PMEM) log accelerator

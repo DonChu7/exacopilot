@@ -1,0 +1,2080 @@
+Help for ALTER ALERTHISTORY
+
+Usage: ALTER ALERTHISTORY { ALL | alertid1 [,alertid2 ...] }
+examinedby=<user-name>
+
+Purpose: Sets the examinedby attribute of alerts.
+
+Arguments:
+<alertid(n)>:  The id of the alerts to be changed.
+<user-name>:   Name of user acknowledging the alert.
+
+Examples:
+ALTER ALERTHISTORY 123 examinedby=joe
+
+Help for ALTER CELL
+
+Usage: ALTER CELL {
+| SHUTDOWN SERVICES { RS | MS | CELLSRV | ALL | EGS | USREDS | SYSEDS |
+ERS | BSM | BSW | IFD }
+| RESTART SERVICES { RS | MS | CELLSRV | ALL | EGS | USREDS | SYSEDS |
+ERS | BSM | BSW | IFD }
+| RESTART BMC
+| STARTUP SERVICES { RS | MS | CELLSRV | ALL | EGS | USREDS | SYSEDS |
+ERS | BSM | BSW | IFD }
+| DISABLE SERVICES { EGS | USREDS | SYSEDS | ERS | BSM | BSW | IFD }
+| LED { ON | OFF }
+| DONOTSERVICELED { ON | OFF [FORCE] }
+| VALIDATE { MAIL | SNMP | CONFIGURATION }
+| VALIDATE SYSLOGCONF facility.priority
+| CONFIGUREBMC
+| BBU DROP FOR REPLACEMENT
+| BBU REENABLE
+| SNMPUSER.user_name = user_values
+| attribute_name = attribute_value  [, attribute_name = attribute_value]...
+
+Purpose: Performs an action or changes attributes of the cell.
+
+Arguments:
+<attribute_name>:         The name of the cell attribute to be changed.
+<attribute_value>:        The value assigned to the attribute.
+<facility.priority>:      The syslog facility and priority to use for a test message.
+<user_name>:              The SNMP V3 user name to be added or changed.
+<user_values>:            The SNMP V3 user parameters.
+
+Options:
+[SHUTDOWN SERVICES]:      Shuts down the specified service or ALL services.
+A service can be an Exadata service (CELLSRV, MS, RS) or an
+Exascale service (EGS, SYSEDS, USREDS, ERS, BSM, BSW, IFD).
+ALL includes CELLSRV, MS, RS, and enabled Exascale services.
+[RESTART SERVICES]:       Shuts down and restarts the specified service or ALL services.
+A service can be an Exadata service (CELLSRV, MS, RS) or an
+Exascale service (EGS, SYSEDS, USREDS, ERS, BSM, BSW, IFD).
+ALL includes CELLSRV, MS, RS, and enabled Exascale services.
+[STARTUP SERVICES]:       Starts the specified service or ALL services.
+A service can be an Exadata service (CELLSRV, MS, RS) or an
+Exascale service (EGS, SYSEDS, USREDS, ERS, BSM, BSW, IFD).
+ALL includes CELLSRV, MS, RS, and enabled Exascale services.
+To enable a disabled service, you must start it specifically
+by name.
+[DISABLE SERVICES]:       Shuts down and disables the specified Exascale service.
+A disabled service is prevented from automatically restarting
+and is not included in ALTER CELL operations on ALL services.
+To enable a disabled service, you must start it specifically
+by name.
+[LED {ON | OFF}]:         The chassis LED is turned on or off.
+[DONOTSERVICELED {ON | OFF [FORCE]}]:  The Do-Not-Service LED is turned on or off.
+
+[VALIDATE MAIL]           A test message is sent using mail configuration
+[VALIDATE SNMP]           A test message is sent using snmp configuration
+[VALIDATE CONFIGURATION]  A test is run to verify firmware configuration.
+[VALIDATE SYSLOGCONF]     A test message is sent for specified facility and priority.
+[CONFIGUREBMC ]      Sets the BMC configuration for alerts
+[RESTART BMC ]       Resets/Rebooots the BMC.
+[BBU DROP FOR REPLACEMENT ]  HDD disk controller battery is dropped for replacement.
+[BBU REENABLE]               HDD disk controller battery is re-enabled.
+
+Attributes:
+mailServer:               Set this attribute to the intended mail server to enable smart relay for sendmail service.
+Examples:
+ALTER CELL RESTART SERVICES ALL
+ALTER CELL VALIDATE SYSLOGCONF 'kern.info'
+ALTER CELL mailServer='mail_relay.example.com',                    -
+smtpFromAddr='john.doe@my_domain.com',                  -
+smtpFrom='John Doe',                                    -
+smtpToAddr='jane.smith@my_domain.com',                  -
+snmpSubscriber=((host=host1, port=161),(host=host2)),   -
+notificationPolicy='critical,warning,clear',            -
+notificationMethod='mail,snmp'                          -
+syslogconf=('kern.* @mgmtnode1','kern.crit @mgmtnode2'),-
+sysloginput=('audit;aide @mgmtnode1','yum @mgmtnode2'), -
+accessLevelPerm='remoteLoginDisabled',                  -
+accessLevelTemp=((accessLevel='remoteLoginEnabled',
+startTime='2015-05-15T11:00:00+08:00',
+duration='3h',
+reason='Software upgrade'))
+ALTER CELL SNMPUSER.v3User=(authprotocol=SHA,authpassword=*)
+ALTER CELL SNMPUSER.v3User=''
+
+Help for ALTER CELLDISK
+
+Usage: ALTER CELLDISK { ALL [ { [PERFORMANCEOPTIMIZED | CAPACITYOPTIMIZED] FLASHDISK } | HARDDISK | PMEM ] | cdisk1 [,cdisk2]...}
+{{ FLUSH [NOWAIT] | CANCEL FLUSH } |
+{ <attribute_name> = <attribute_value>
+[, <attribute_name> = <attribute_value>]...}}
+
+Purpose: Alter modifiable attributes of celldisks.
+
+Arguments:
+<cdisk(n)>:  The name of the cell disk(s) to be changed.
+<attribute_name>: attribute to be changed.
+<attribute_value>: new attribute value.
+
+Options:
+[PERFORMANCEOPTIMIZED]:  Limits the alter operation to all performance-optimized flash disks.
+[CAPACITYOPTIMIZED]:     Limits the alter operation to all capacity-optimized flash disks.
+[FLASHDISK]: Limits the alter operation to all cell disks of type FlashDisk.
+[HARDDISK]:  Limits the alter operation to all cell disks of type HardDisk.
+[PMEM]:      Limits the alter operation to all cell disks of type PMEM.
+[CANCEL FLUSH]:  Previous flush operation on disks is terminated.
+[FLUSH]:         Dirty blocks for specified disks are flushed.
+[NOWAIT]:        Allows alter command to complete while flush operation continues.
+
+Examples:
+ALTER CELLDISK 123 name='abc', comment='name was changed to abc'
+ALTER CELLDISK ALL FLUSH NOWAIT
+ALTER CELLDISK ALL HARDDISK FLUSH
+ALTER CELLDISK ALL FLASHDISK CANCEL FLUSH
+ALTER CELLDISK ALL CAPACITYOPTIMIZED FLASHDISK comment='capacity-optimized flash disk on cell01'
+
+Help for ALTER ESCLUSTER
+
+Usage: ALTER ESCLUSTER { START | <attribute_name> = <attribute_value>
+[, <attribute_name> = <attribute_value>]...}
+
+Purpose: Alter modifiable attributes of the Exascale cluster.
+
+Arguments:
+<attribute_name>: Attribute to be changed.
+<attribute_value>: New attribute value.
+
+Options:
+[START]: Bypass safety checks and forcibly boot the cluster.
+
+Examples:
+ALTER ESCLUSTER adminPassword='password'
+ALTER ESCLUSTER adminPubKey1='public key'
+
+Help for ALTER ESNODE
+
+Usage: ALTER ESNODE
+{ <attribute_name> = <attribute_value>
+[, <attribute_name> = <attribute_value>]...}
+
+Purpose: Alter modifiable attributes of the Exascale node on local host.
+
+Arguments:
+<attribute_name>: Attribute to be changed.
+<attribute_value>: New attribute value.
+
+Examples:
+ALTER ESNODE trustStore='abc'
+ALTER ESNODE ersip='123', restBackendServerList='host1,host2', frontendPriority=1
+ALTER ESNODE restBackend=true
+
+Help for ALTER FLASHCACHE
+
+Usage: ALTER FLASHCACHE { ALL | CELLDISK="cdisk1 [,cdisk2]..." [FORCE]}
+{ FLUSH [NOWAIT] | CANCEL FLUSH }
+
+Purpose: To alter set of cell disks used by flash cache
+Or, to flush dirty blocks from flash cache located on the specified cell disks
+Or, to cancel the previous flush operation on the specified cell disks.
+
+Arguments:
+<ALL>:      All avaliable flash cell disks are affected.
+<cdisk(n)>: The name of the flash cell disks to alter.
+
+Options:
+Default option is to change the set of cell disks used by flash cache.
+Cell disks currently used by flash cache but not specified in the ALTER FLASHCACHE command
+will be no longer used by flash cache.
+[CANCEL FLUSH]:  Previous flush operation on specified disks is terminated.
+[FLUSH]:         Dirty blocks on specified disks are flushed.
+[NOWAIT]:        Allows alter command to complete while flush operation continues.
+[FORCE]:         Can be used to forcefully change the set of cell disks used by flash cache.
+
+Examples:
+ALTER FLASHCACHE ALL
+ALTER FLASHCACHE CELLDISK='FD_01_mycell,FD_03_mycell' FORCE
+ALTER FLASHCACHE ALL FLUSH NOWAIT
+
+Help for ALTER GRIDDISK
+
+Usage: ALTER GRIDDISK { ALL [ { [PERFORMANCEOPTIMIZED | CAPACITYOPTIMIZED] FLASHDISK } | HARDDISK ]
+| gdisk1 [,gdisk2]...}
+{ [attribute_filters] { ACTIVE | INACTIVE | { FLUSH [NOWAIT] | CANCEL FLUSH } } |
+<attribute_name> = <attribute_value>
+[, <attribute_name> = <attribute_value> ...]
+[attribute_filters] [NOWAIT]
+}
+
+Purpose: Alters modifiable attributes of griddisks.
+
+Arguments:
+<gdisk(n)>:  The name of the grid disk(s) to be changed.
+<attribute_name>: attribute to be changed.
+<attribute_value>: new attribute value.
+
+Options:
+ALL:                 By itself, the ALL option limits the alter operation to all grid disks using the primary
+storage media.
+On High Capacity (HC) storage servers, hard disk drives (HDDs) are the primary storage media.
+On Extreme Flash (EF) storage servers with performance-optimized and capacity-optimized flash
+disks, capacity-optimized flash disks are the primary storage media. Performance-optimized
+flash disks are the primary storage media on EF storage servers with only that storage media.
+[ACTIVE]:            CELLSRV should accept IO as normal for grid disk(s).
+[INACTIVE]:          CELLSRV should treat the grid disk(s) as offline.
+[CANCEL FLUSH]:      Previous flush operation on griddisks is terminated.
+[FLUSH]:             Dirty blocks for specified griddisks are flushed.
+[PERFORMANCEOPTIMIZED]: Limits the alter operation to grid disks on performance-optimized flash disks.
+[CAPACITYOPTIMIZED]:    Limits the alter operation to grid disks on capacity-optimized flash disks.
+[FLASHDISK]:         Limits the alter operation to grid disks on flash disks.
+By default, on Extreme Flash(EF) storage servers with performance-optimized and capacity-
+optimized flash disks, this option only affects grid disks on capacity-optimized flash disks.
+[HARDDISK]:          Limits the alter operation to grid disks on hard disk drives (HDDs).
+[NOWAIT]:            Allows alter command to complete while resize or flush operation continues.
+
+Examples:
+ALTER GRIDDISK 123 name='abc', comment='name was changed to abc'
+
+Help for ALTER IBPORT
+
+Usage: ALTER IBPORT { ALL | ibport_name [, ibport_name]... } RESET COUNTERS
+
+Purpose: Perform an action on all InfiniBand ports or the
+specified InfiniBand ports.
+
+Arguments:
+<ibport_name>: The name of the InfiniBand port to be altered.
+
+Options:
+[RESET COUNTERS]:   Reset all counters on the port.
+
+Examples:
+ALTER IBPORT ALL RESET COUNTERS
+ALTER IBPORT 'HCA-1:1' RESET COUNTERS
+
+Help for ALTER IORMPLAN
+
+Usage: ALTER IORMPLAN {
+[ objective= {basic | auto | low_latency | balanced | high_throughput}]
+[ catplan=( directive1  [, directive2]... )]
+[ dbplan=( directive1  [, directive2]... )]
+[ clusterplan=( directive1  [, directive2]... )]
+}
+where:
+directiven = ( name=<name>
+[, share=<number>]
+[, level=<number>, allocation=<number>]
+[, limit=<number>]
+[, role={primary | standby}]
+[, flashcache={on | off}]
+[, xrmemcache={on | off}]
+[, flashlog={on | off}]
+[, xrmemlog={on | off}]
+[, flashCacheLimit=<number>]
+[, flashCacheMin=<number>]
+[, flashCacheSize=<number>]
+[, type={profile | database}] )
+[, asmcluster=<asmcluster>] )
+[, xrmemCacheLimit=<number>]
+[, xrmemCacheMin=<number>]
+[, xrmemCacheSize=<number>]
+
+Purpose: Change attributes of the IORM plan.
+
+The objective attribute is used to control the IORM behavior.
+By default, the objective is set to 'basic' as IORM is always minimally enabled.
+To enable user-defined plans, the objective attribute must be set to a value other than 'basic'.
+Setting the objective to 'auto' lets IORM determine the best mode based on active workloads and resource plans.
+This is the recommended value that users should start with.
+Setting the objective to 'high_throughput' improves throughput at the cost of small I/O latency.
+Setting the objective to 'low_latency' lowers small I/O latency at the cost of throughput.
+Setting the objective to 'balanced' provides a balance between high throughput and low latency.
+
+The dbplan attribute lets you manage resource allocations among databases.
+DB plans can be defined in one of the following configurations:
+1) Using the 'share' attribute to specify the relative priority for a database. A higher 'share' value implies higher priority and more guaranteed I/O resources.
+The recommended best practice is to use the 'share' attribute with dbplan.
+A 'default' directive can be specified to provide a default value for each database that is not explicitly named in the dbplan.
+
+2) Using the 'limit' attribute to restrict the I/O utilization for a database to a specified utilization limit.
+This is ideal for pay-for-performance use cases and should not be used to implement fairness.
+Note that specifying low limit values can have a significant performance impact and is not advisable for regular consolidation use cases.
+
+3) Specifying the flash cache attributes to manage the flash cache space usage in consolidation use cases.
+Use 'flashcachemin' to guarantee space in flash cache even when the data in cache is cold.
+Use 'flashcachelimit' to specify a soft maximum beyond which the database cannot use more space in cache when flash cache is full.
+Use 'flashcachesize' to specify a fixed allocation that partitions flash cache and reserves space for a database.
+
+4) Using the 'role' attribute to configure plans for a Data Guard environment.
+'Role' lets the user specify different attribute values based on whether the database is in primary or standby 'role'.
+In case of a switchover or failover, the new attribute values are automatically applied by IORM.
+
+5) Using 'profile' directives to ease management and configuration of resource plans in large consolidation environments with hundreds of databases.
+Databases that map to a particular 'profile' inherit the attribute values from the 'profile' directive specified in the plan.
+Set the db_performance_profile database parameter to map a database to a 'profile'.
+The dbplan can contain a combination of profile and individual database directives.
+
+6) Using the 'asmcluster' attribute to specify different directives for databases with the same unique name running in different ASM clusters.
+The asmcluster attribute value should match the 'asm' field in the cellkey.ora file when setting up Oracle ASM-scoped security.
+
+7) The xrmem cache space management attributes: xrmemcachemin, xrmemcachelimit, and xrmemcachesize can be used similar to their flash cache counterparts for consolidation.
+
+Use the clusterplan attribute to manage resources among clusters. You can define a cluster plan using shares or limits:
+1) Use the 'share' attribute to specify the relative priority for a cluster. A higher 'share' value implies a higher share of the I/O resources.
+Shares enable full resource utilization while maintaining fair access to I/O resources. Share-based allocation is recommended for most use-cases.
+
+2) Use the 'limit' attribute to specify the maximum percentage of I/O resources that a cluster can use. Limits regulate performance rather than controlling fair access to I/O resources.
+A low limit can have significant performance impacts. Limits are recommended for pay-for-performance use cases but not recommended for typical consolidation use-cases.
+
+For complete usage notes and additional examples, refer to 'ALTER IORMPLAN' in the Exadata documentation.
+
+Examples:
+1) To enable user-defined plans, set the IORM objective.
+ALTER IORMPLAN objective = auto
+
+2) For a departmental consolidation, set the dbplan using the 'share' attribute.
+ALTER IORMPLAN  -
+dbplan=((name=sales,   share=8), -
+(name=finance, share=4), -
+(name=hr,      share=2), -
+(name=default, share=1))
+
+3) For a cloud consolidation, set the dbplan using 'profile', 'share', 'flashcachemin' and 'flashcachelimit' attributes.
+ALTER IORMPLAN  -
+dbplan=((name=gold,   share=8,  flashcachemin=1G,   type=profile), -
+(name=silver, share=4,                      type=profile), -
+(name=bronze, share=1,  flashcachelimit=2G, type=profile), -
+(name=clouddb,share=10, flashcachemin=5G,   type=database))
+4) For a consolidation with strict guarantee and consistent performance requirements, set the dbplan using 'share', 'limit' and 'flashcachesize' attributes.
+ALTER IORMPLAN  -
+dbplan=((name=dbhigh,  share=16, flashcachesize=50G), -
+(name=dbmed,   share=8,  flashcachesize=10G), -
+(name=dblow,   share=4,  flashcachesize=5G, limit=90), -
+(name=default, share=1,  flashcachesize=1G, limit=50))
+5) For a Data Guard environment, specify different dbplan directives using the 'role' attribute.
+ALTER IORMPLAN  -
+dbplan=((name=oltpdg,  share=4, flashcachemin=5G, role=primary), -
+(name=oltpdg,  share=2, limit=80,         role=standby), -
+(name=dwh,     share=2))
+6) For a multi-cluster environment with ASM-scoped security mode, specify different directives for databases with the same unique name using the 'asmcluster' attribute.
+ALTER IORMPLAN  -
+dbplan=((name=tenantdb1, share=4, flashcachemin=5G,   asmcluster=cluster1), -
+(name=tenantdb1, share=2, limit=80,           asmcluster=cluster2), -
+(name=tenantdb2, share=2, flashcachelimit=2G, asmcluster=cluster1), -
+(name=default,   share=1, flashcachelimit=1G))
+7) For a consolidation with strict guarantee and consistent performance requirements between ASM clusters, set the clusterplan using 'share' and 'limit' attributes.
+ALTER IORMPLAN  -
+clusterplan=((name=asmcluster1, share=6, limit=50), -
+(name=asmcluster2, share=3, limit), -
+(name=asmcluster3, share=3), -
+(name=asmcluster4, share=1))
+
+Help for ALTER LUN
+
+Usage: ALTER LUN { ALL | lun1 [,lun2]... }
+REENABLE
+
+Purpose: Reenable a LUN.
+
+Arguments:
+<lun(n)>: The name of the LUN(s) to be reenabled.
+ALL: All the LUNs on the cell.
+Examples:
+ALTER LUN lun1 REENABLE
+
+Help for ALTER METRICDEFINITION
+
+Usage: ALTER METRICDEFINITION { metric1 [,metric2]... }
+{ [attribute_filters] } |
+<attribute_name> = <attribute_value>
+[attribute_filters]
+}
+
+Purpose: Alters the modifiable attributes of metric definitions.
+
+Arguments:
+<metric(n)>: The name of the metric definition(s).
+<attribute_name>: attribute to be changed.
+<attribute_value>: new attribute value.
+Examples:
+ALTER METRICDEFINITION cl_cput fineGrained=enabled
+
+Help for ALTER OFFLOADGROUP
+
+Usage: ALTER OFFLOADGROUP { offloadgroup1 [,offloadgroup2]... }  {
+| <attribute_name> = <attribute_value> [, <attribute_name> = <attribute_value>]...
+| STARTUP | RESTART | SHUTDOWN }
+
+Purpose: Alter modifiable attributes of offloadgroup or
+for restart/starup/shutdown services.
+
+Arguments:
+<offloadgroup(n)>: The name(s) of the offloadgroup(s) to be changed.
+<attribute_name>:  attribute to be changed (e.g., package, comment)
+<attribute_value>: new attribute value.
+
+Options:
+STARTUP:           start up the specified offload group(s).
+RESTART:           shut down and then start up the specified offload group(s).
+SHUTDOWN:          shut down the specified offload group(s).
+
+Examples:
+ALTER OFFLOADGROUP offloadgroup1 package='cellofl-12.1.1.1.0_LINUX.X64_121221.0005'
+ALTER OFFLOADGROUP offloadgroup1 startup
+
+Help for ALTER PHYSICALDISK
+
+Usage: ALTER PHYSICALDISK {  ALL [ HARDDISK ] | diskid1 [,diskid2]...}
+{  DROP FOR REPLACEMENT [ MAINTAIN REDUNDANCY [NOWAIT] | FORCE ]
+| REENABLE
+| POWERCYCLE }
+
+Purpose: To perform the specified action on the specified disk.
+
+Arguments:
+<diskid(n)>:  The id of the physical disk(s) on which action is being performed.
+
+Options:
+[DROP FOR REPLACEMENT]: Checks if a physical disk can be removed safely, without the risk of data loss.
+If the disk can be dropped, then the command disables the physical disk, drops
+the disk, and turns on the service LED.
+[MAINTAIN REDUNDANCY]:  Maintains data redundancy when dropping the physical disk(s).
+[NOWAIT]:               Performs the drop operation and all required data rebalancing asynchronously,
+which avoids potentially lengthy wait times.
+[FORCE]:                Performs the drop operation, even if it may compromise data integrity.
+[REENABLE]:             Re-enables a normal physical disk that was dropped for replacement. If the specified
+hard disk is re-enabled successfully, then the service LED is turned off.
+[POWERCYCLE]:           power cycle a failed physical disk.
+
+Examples:
+ALTER PHYSICALDISK 12:3 DROP FOR REPLACEMENT
+ALTER PHYSICALDISK 12:3 REENABLE
+
+Help for ALTER QUARANTINE
+
+Usage: ALTER QUARANTINE { ALL | quarantine1 [,quarantine2] }
+<attribute_name> = <attribute_value>
+[, <attribute_name> = <attribute_value>]...
+
+Purpose: Alter modifiable attributes of quarantines.
+
+Arguments:
+<quarantine(n)>:    The name of the quarantine(s) to be changed.
+<attribute_name>:  attribute to be changed.
+<attribute_value>: new attribute value.
+
+Examples:
+ALTER QUARANTINE 123  comment='added by oper1'
+
+Help for ALTER SOFTWAREUPDATE
+
+Usage: ALTER SOFTWAREUPDATE {
+VALIDATE PREREQ
+| UPGRADE [ FORCE ]
+| <attribute_name> = <attribute_value>
+[, <attribute_name> = <attribute_value>]...
+
+Purpose: Performs an action or alter attributes for a software update.
+
+Arguments:
+<attribute_name>:  attribute to be changed.
+<attribute_value>: new attribute value.
+
+Options:
+VALIDATE PREREQ:   Download software and run checks.
+UPGRADE:           Download software, run prereq and upgrade.
+FORCE:             Ignore prereq failure on upgrade.
+
+Examples:
+ALTER SOFTWAREUPDATE   time='2017-06-09T11:30'
+ALTER SOFTWAREUPDATE   VALIDATE PREREQ
+
+Help for ALTER THRESHOLD
+
+Usage: ALTER THRESHOLD { ALL | threshold1 [,threshold2] }
+<attribute_name> = <attribute_value>
+[, <attribute_name> = <attribute_value>]...
+
+Purpose: Alter modifiable attributes of thresholds.
+
+Arguments:
+<threshold(n)>:    The name of the threshold(s) to be changed.
+<attribute_name>:  attribute to be changed.
+<attribute_value>: new attribute value.
+
+Examples:
+ALTER THRESHOLD TH123  warning=1000
+
+Help for ALTER USER
+
+Usage: ALTER USER user
+<attribute_name> = <attribute_value>
+[, <attribute_name> = <attribute_value>]...
+
+Purpose: Alter modifiable attributes of a user.
+
+Arguments:
+<user>: The name of the user to be altered.
+
+Examples:
+ALTER USER scott password=12345678a
+
+Help for ALTER XRMEMCACHE
+
+Usage: ALTER XRMEMCACHE { ALL | CELLDISK="cdisk1 [,cdisk2]..." [FORCE]}
+{ FLUSH [NOWAIT] | CANCEL FLUSH }
+
+Purpose: To alter set of cell disks used by XRMEM cache
+Or, to flush dirty blocks from XRMEM cache located on the specified cell disks
+Or, to cancel the previous flush operation on the specified cell disks.
+
+Arguments:
+<ALL>:      All avaliable XRMEM cell disks are affected.
+<cdisk(n)>: The name of the XRMEM cell disks to be used for alter.
+
+Options:
+Default option is to change the set of cell disks used by XRMEM cache.
+Cell disks currently used by XRMEM cache but not specified in the ALTER XRMEMCACHE command
+will be no longer used by XRMEM cache.
+[CANCEL FLUSH]:  Previous flush operation on specified disks is terminated.
+[FLUSH]:         Dirty blocks on specified disks are flushed.
+[NOWAIT]:        Allows alter command to complete while flush operation continues.
+[FORCE]:         Can be used to forcefully change the set of cell disks used by XRMEM cache.
+
+Examples:
+ALTER XRMEMCACHE ALL
+ALTER XRMEMCACHE CELLDISK='PM_01_mycell,PM_03_mycell' FORCE
+ALTER XRMEMCACHE ALL FLUSH NOWAIT
+
+Help for ASSIGN KEY
+
+Usage: ASSIGN KEY FOR [ ASMCLUSTER ] client1=key1[,client2=key2]...
+ASSIGN KEY FOR [ LOCAL | REMOTE ] CELL client1=key1[,client2=key2]...
+ASSIGN KEY FOR CELL key
+
+Purpose: Assigns or drops keys for clients.
+
+Options:
+[ASMCLUSTER]: option to specify that client is an ASMCLUSTER
+[CELL]: specify a Cell Key, for Cell-to-Cell (C2C) operation
+
+Arguments:
+clientn:  The unique ID of the database or ASM client or Cell Key.
+keyn:  The hex string key to be assigned to the client
+An empty string removes the client's key
+
+Examples:
+ASSIGN KEY FOR db123='b67d5587fe728118af47c57ab8da650a'
+ASSIGN KEY FOR db456='118af47c57ab8da650ab67d5587fe728'
+ASSIGN KEY FOR ASMCLUSTER asm1='118af47c57ab8da650ab67d5587fe728'
+ASSIGN KEY FOR CELL 'fa292e11b31b210c4b7a24c5f1bb4d32'
+ASSIGN KEY FOR db456='',db123='',asm1=''
+
+Help for CALIBRATE
+
+Usage: CALIBRATE [HARDDISK | FLASHDISK | lun1 [, lun2]] [FORCE]
+Purpose: Runs raw performance tests on disks.
+CELLSRV must be shutdown.  User id root is required.
+
+Options:
+[FLASHDISK]: option to specify that only flash LUNs be calibrated.
+[HARDDISK] : option to specify that only hard disk LUNs be calibrated.
+lun1 [, lun2] : option to specify list of LUNs by name    [FORCE]    : runs test even while CELLSRV is running.
+
+Examples:
+CALIBRATE
+CALIBRATE '0_8', '0_10' force
+
+Help for CREATE CELL
+
+Usage: CREATE CELL [<cellname>]
+[interconnect1=<ethvalue>,] [interconnect2=<ethvalue>,]
+[interconnect3=<ethvalue>,] [interconnect4=<ethvalue>]
+
+Purpose: Configures the cell network and starts services.
+
+Arguments:
+<cellname>: Name to be assigned to the cell.
+Uses hostname if nothing is specified
+<ethvalue>: Value of the eth interconnect assigned to this network interconnect.
+
+Examples:
+CREATE CELL cell22 interconnect1=eth0, interconnect2=eth1, -
+interconnect3=eth2, interconnect4=eth3
+
+
+Help for CREATE CELLDISK
+
+Usage: CREATE CELLDISK {
+ALL [ { [PERFORMANCEOPTIMIZED | CAPACITYOPTIMIZED] FLASHDISK } | HARDDISK | PMEM ]
+|  cdisk1 attributename=value[,attributename=value]... [FORCE]
+|  ((name=cdisk2, attributename=value[,attributename=value]...)
+[,(name=cdisk3, attributename=value[,attributename=value]...)]...)}
+
+Purpose: Creates cell disk(s) according to attributes provided.
+
+Arguments:
+<cdisk(n)>:  The name of the cell disk(s) to be created.
+<attributename>: attribute to be set.
+<value>: new attribute value.
+
+Options:
+[FORCE]: Creates cell disk even if LUN or physical disk has
+pre-existing cell disk.
+[PERFORMANCEOPTIMIZED]:  Limits the create operation to all performance-optimized flash disks.
+[CAPACITYOPTIMIZED]:     Limits the create operation to all capacity-optimized flash disks.
+[FLASHDISK]: Limits the create operation to all cell disks of type FlashDisk.
+[HARDDISK]:  Limits the create operation to all cell disks of type HardDisk.
+[PMEM]:      Limits the create operation to all cell disks of type PMEM.
+
+Examples:
+CREATE CELLDISK CD123  LUN=123
+CREATE CELLDISK ALL
+CREATE CELLDISK ALL HARDDISK
+CREATE CELLDISK ALL FLASHDISK
+CREATE CELLDISK ALL CAPACITYOPTIMIZED FLASHDISK
+
+Help for CREATE DIAGPACK
+
+Usage: CREATE DIAGPACK {
+packStartTime=<time> [, durationInHrs=<duration>] [, packType=compact]
+| alertName=<name> [, packType=compact]
+| packType=sundiag
+| packType=netdiag }
+
+Purpose: Create a new diagnostic package.
+
+A diagnostic package is a compressed file containing logs and traces,
+which is written to $LOG_HOME.
+Monitor the packaging process by using LIST DIAGPACK.
+
+Arguments:
+<packStartTime>:
+The start time for the logs and traces in the diagnostic package.
+Valid values are 'now' or a time within the past 7 days expressed
+in the format: YYYY_MM_ddTHH_mm_ss
+If this argument is specified, a compact diagnostic package is created,
+which contains logs and traces as defined in
+$OSS_SCRIPTS_HOME/diagPackConfig/config.xml.
+<durationInHrs>:
+The duration for package creation.
+One package per hour for the specified period.
+Default and minimum value: 1
+Maximum value: 6
+This argument only works in conjunction with <packStartTime>.
+<alertName>:
+The alert name, which is the subject of the diagnostic package.
+Use LIST ALERTHISTORY DETAIL to find the alert name.
+If this argument is specified, a compact diagnostic package is created,
+which contains logs and traces as defined in
+$OSS_SCRIPTS_HOME/diagPackConfig/config.xml.
+<packType>:
+The specific type of the diagnostic package being created:
+compact - Default value. Creates a compact diagnostic package
+which contains logs and traces as defined in
+$OSS_SCRIPTS_HOME/diagPackConfig/config.xml.
+sundiag - Creates a sundiag that contains OSWatcher logs,
+ExaWatcher logs, cell metrics and server traces.
+netdiag - Creates a netdiag that contains RDMA network fabric
+(InfiniBand or RoCE) logs and traces.
+
+Examples:
+CREATE DIAGPACK packStartTime="now"
+CREATE DIAGPACK packStartTime="2015_07_24T09_00_00", durationInHrs=2
+CREATE DIAGPACK alertName=2_1
+CREATE DIAGPACK packType=netdiag
+
+
+Help for CREATE ESCLUSTER
+
+Usage: CREATE ESCLUSTER <escluster_name>
+
+Purpose: Creates Exascale cluster, which sets up the ExaROOT service
+on this host.
+
+Arguments:
+<escluster_name>: Exascale cluster name.
+
+Examples:
+CREATE ESCLUSTER my_cluster
+
+Help for CREATE FLASHCACHE
+
+Usage: CREATE FLASHCACHE {
+ALL  [ size = <size-value> ]
+| celldisk = 'cdisk1 [, cdisk2]...' [,size = <size-value>] }
+
+Purpose: Creates a flash cache for IO requests.
+
+Arguments:
+cdiskN : The flash cell disks to use for the cache.
+<size-value>: The total size of cache to be created.
+
+Options:
+ALL : All available flash cell disks are used for the cache.
+
+Examples:
+CREATE FLASHCACHE  celldisk='FD_01_mycell,FD_02_mycell', size = 64G
+CREATE FLASHCACHE  ALL size = 64G
+
+Help for CREATE FLASHLOG
+
+Usage: CREATE FLASHLOG {
+ALL  [ size = <size-value> ]
+| celldisk = 'cdisk1 [, cdisk2]...' [,size = <size-value>] }
+
+Purpose: Creates flash log for logging requests.
+
+Arguments:
+cdiskN : The flash celldisks to be used for the log store.
+<size-value>: The total size of log store to be created.
+
+Options:
+ALL : All flash celldisks are used for the log store.
+
+Examples:
+CREATE FLASHLOG  celldisk='FD_01_mycell,FD_02_mycell', size = 64M
+CREATE FLASHLOG  ALL size = 512M
+
+Help for CREATE GRIDDISK
+
+Usage: CREATE GRIDDISK {
+ALL [ { [PERFORMANCEOPTIMIZED | CAPACITYOPTIMIZED] FLASHDISK } | HARDDISK ]
+PREFIX={ gd-name-prefix | 'gd-name-prefix1 [, gd-name-prefix2]...' }
+[,multi_attribute_name='value1 [, value2]...']...
+| gdisk celldisk=value
+}                              [,attributename=value]...
+
+Purpose: Creates grid disk(s) according to attributes provided.
+
+Arguments:
+<gdisk>:  The name of the grid disk to be created.
+<gd-name-prefix(n)>: The grid disk name prefix. To create the
+grid disk name, an underscore character
+and the cell disk name are appended to the
+prefix value.
+<attributename>: Attribute to be set.
+<multi_attribute_name>: The name of an attribute that accepts
+a single value or a comma-separated list
+of values.
+If a single value is supplied, it applies
+to all values in the PREFIX list.
+Otherwise, each entry in the list of
+attribute values applies to the
+corresponding value in the PREFIX list.
+Applies only when the command specifies
+multiple comma-separated PREFIX values
+and only to the attributes:
+size, offset, virtualSize, and comment.
+<value>: New attribute value.
+<value(n)>: New attribute value for a multi-valued attribute.
+
+Options:
+ALL PREFIX:  For each entry in the prefix list, one grid disk is created on each eligible
+cell disk. If no media type is specified, only cell disks using the primary
+storage media are eligible.
+On High Capacity (HC) storage servers, hard disk drives (HDDs) are the primary
+storage media. On Extreme Flash (EF) storage servers with performance-optimized
+and capacity-optimized flash disks, capacity-optimized flash disks are the primary
+storage media. Performance-optimized flash disks are the primary storage media on
+EF storage servers with only that storage media.
+[PERFORMANCEOPTIMIZED]:  Limits the create operation to use cell disks on performance-optimized flash disks.
+[CAPACITYOPTIMIZED]:     Limits the create operation to use cell disks on capacity-optimized flash disks.
+[FLASHDISK]: Limits the create operation to use cell disks on flash disks.
+By default, on Extreme Flash (EF) storage servers with performance-optimized and capacity-
+optimized flash disks, only capacity-optimized flash disks are used.
+[HARDDISK]:  Limits the create operation to use cell disks on hard disk drives (HDDs).
+
+Examples:
+CREATE GRIDDISK GD123_0 celldisk = CD123, size =100M
+CREATE GRIDDISK ALL PREFIX=data1
+CREATE GRIDDISK ALL PREFIX='data1,data2', size='50M'
+CREATE GRIDDISK ALL PREFIX='data1,data2', size='50M,100M'
+CREATE GRIDDISK ALL PREFIX='sparse1,sparse2', size='50M,100M', virtualSize='5G'
+CREATE GRIDDISK ALL PREFIX='sparse1,sparse2', size='50M,100M', virtualSize='5G,10G'
+
+Help for CREATE KEY
+
+Usage: CREATE KEY
+
+Purpose: Creates and displays random key for use in assigning client keys.
+
+Example:
+create key
+
+Help for CREATE QUARANTINE
+
+Usage: CREATE QUARANTINE quarantineType=value, quarantinePlan="SYSTEM", dbUniqueName=value[,attributeName=value]...
+
+Purpose: Define the attributes for a new quarantine entity.
+
+Arguments:
+<attributeName>: attribute to be set.
+<value>: new attribute value.
+
+Examples:
+CREATE QUARANTINE  quarantineType="SQLID", quarantinePlan="SYSTEM", dbUniqueName="DB1", sqlid="5xnjp4cutc1s7"
+
+Help for CREATE ROLE
+
+Usage: CREATE ROLE role role1[,role2]...
+
+Purpose: Create new security role(s).
+
+Arguments:
+<role(n)>:  The name of the role to be created.
+
+Examples:
+CREATE ROLE admin,listcellonly
+
+Help for CREATE THRESHOLD
+
+Usage: CREATE THRESHOLD  th1 attributename=value[,attributename=value]...
+
+Purpose: Defines conditions for generation of a metric alert.
+
+Arguments:
+<th(n)>:  The name of the threshold to be created.
+<attributename>: attribute to be set.
+<value>: new attribute value.
+
+Examples:
+CREATE THRESHOLD db_io_rq_sm_sec.db123 comparison='>', critical=120
+
+
+
+Help for CREATE USER
+
+Usage: CREATE USER user password="<new password>"
+
+Purpose: Create a new user with new password.
+
+Arguments:
+<user>:  The name of the user to be created.
+<new password>: new password value.
+
+Examples:
+CREATE USER scott password="Password1234"
+CREATE USER scott password=*
+Note: Using password=* (* being a literal asterisk) will prompt for a
+password to be entered.
+
+
+Help for CREATE XRMEMCACHE
+
+Usage: CREATE XRMEMCACHE {
+ALL  [ size = <size-value> ]
+| celldisk = 'cdisk1 [, cdisk2]...' [,size = <size-value>] }
+
+Purpose: Creates a XRMEM cache for IO requests.
+
+Arguments:
+cdiskN : The cell disks to use for the cache.
+<size-value>: The total size of cache to be created.
+
+Options:
+ALL : All qualified cell disks are used for the cache.
+
+Examples:
+CREATE XRMEMCACHE  celldisk='PM_01_mycell,PM_02_mycell', size = 64G
+CREATE XRMEMCACHE  ALL size = 64G
+
+Help for CREATE XRMEMLOG
+
+Usage: CREATE XRMEMLOG {
+ALL  [ size = <size-value> ]
+| celldisk = 'cdisk1 [, cdisk2]...' [,size = <size-value>] }
+
+Purpose: Creates XRMEMLOG for logging requests.
+
+Arguments:
+cdiskN : The celldisks to be used for the log store.
+<size-value>: The total size of log store to be created.
+
+Options:
+ALL : All qualified celldisks are used for the log store.
+
+Examples:
+CREATE XRMEMLOG  celldisk='PM_01_mycell,PM_02_mycell', size = 64M
+CREATE XRMEMLOG  ALL size = 576M
+
+Help for DEREGISTER ESNODE
+
+Usage: DEREGISTER ESNODE id="<esnode_id>"
+
+Purpose: Removes the node with the specified ID from this Exascale
+cluster. This command also removes the associated Exascale user.
+
+Arguments:
+<esnode_id>: ID of the target Exascale node.
+
+Examples:
+DEREGISTER ESNODE id=esnode1
+
+Help for DESCRIBE
+
+Usage: DESCRIBE <object_type>
+
+Purpose: Displays a list of attributes for the object type that is
+provided as an argument.  The tag 'modifiable' is displayed following
+each attribute that can be changed using the ALTER command.
+The tag 'hidden' is displayed following each attribute that is not
+shown by default in list detail displays, but can be displayed
+if the name is included in the list command attributes clause.
+
+Arguments:
+<object_type>: The object type for which attributes are listed.
+
+Examples:
+describe cell
+
+Help for DROP ALERTHISTORY
+
+Usage: DROP ALERTHISTORY { ALL | alert1 [, alert2]... }
+
+Purpose: Removes alert(s) from the cell's alert history.
+
+Arguments:
+<alert(n)>:  The name of the alert(s) to be dropped.
+
+Examples:
+DROP ALERTHISTORY 1, 2_1, 2_2
+
+Help for DROP CELL
+
+Usage: DROP CELL [ ERASE={ 1pass | 3pass | 7pass } ]  [FORCE]
+
+Purpose: Resets cell to its original state.  Cell disks, grid disks, and
+thresholds are dropped.  Iorm plan's are reset.
+Cell attributes are set to default values.
+
+Options:
+[ERASE]: Performs secure data deletion on the cell disks.
+[FORCE]: Drops cell disks even if they contain grid disks.
+
+Examples:
+DROP CELL FORCE
+
+Help for DROP CELLDISK
+
+Usage: DROP CELLDISK { ALL [ { [PERFORMANCEOPTIMIZED | CAPACITYOPTIMIZED] FLASHDISK } | HARDDISK | PMEM ]
+| cdisk1 [, cdisk2]... }
+[ ERASE={ 1pass | 3pass | 7pass } ] [FORCE] [NOWAIT]
+
+Purpose: Removes cell disk(s) from the cell.
+
+Arguments:
+<cdisk(n)>:  The name of the cell disk(s) to be dropped.
+
+Options:
+[ERASE]:     Performs secure data deletion on the cell disk.
+[FORCE]:     Drops cell disk even if it contains grid disks.
+[PERFORMANCEOPTIMIZED]:  Limits the drop operation to all performance-optimized flash disks.
+[CAPACITYOPTIMIZED]:     Limits the drop operation to all capacity-optimized flash disks.
+[FLASHDISK]: Limits the drop operation to all cell disks of type FlashDisk.
+[HARDDISK]:  Limits the drop operation to all cell disks of type HardDisk.
+[PMEM]:      Limits the drop operation to all cell disks of type PMEM.
+[NOWAIT]:    Allows drop command to complete while erase operation continues.
+
+Examples:
+DROP CELLDISK CD123
+DROP CELLDISK CD123  ERASE=1pass
+DROP CELLDISK ALL
+DROP CELLDISK ALL HARDDISK
+DROP CELLDISK ALL FLASHDISK
+DROP CELLDISK ALL CAPACITYOPTIMIZED FLASHDISK
+
+Help for DROP FLASHCACHE
+
+Usage: DROP FLASHCACHE
+
+Purpose: Removes flash cache from the cell.
+
+Examples:
+DROP FLASHCACHE
+
+Help for DROP FLASHLOG
+
+Usage: DROP FLASHLOG [FORCE]
+
+Purpose: Removes flash log from the cell.
+
+Options:
+[FORCE]: Drops FlashLog even if saved redo cannot be flushed.
+
+Examples:
+DROP FLASHLOG
+
+Help for DROP GRIDDISK
+
+Usage: DROP GRIDDISK { ALL [ { [PERFORMANCEOPTIMIZED | CAPACITYOPTIMIZED] FLASHDISK } | HARDDISK ]
+PREFIX={ gd-name-prefix | 'gd-name-prefix1 [, gd-name-prefix2]...' }
+| gdisk1 [, gdisk2]...}
+[ ERASE={ 1pass | 3pass | 7pass } ] [FORCE] [NOWAIT] [PREPARE] [CANCEL]
+
+Purpose: Removes grid disk(s) from the cell.
+
+Arguments:
+<gdisk(n)>:  The name of the grid disk(s) to be dropped.
+<gd-name-prefix(n)>: The grid disk name prefix. To get the grid disk
+name to drop, an underscore character and
+the cell disk name are appended to the
+prefix value.
+
+Options:
+ALL PREFIX:  Entries in the prefix list identify the grid disks to drop. If no media
+type is specified, all matching grid disks using the primary storage media
+are dropped.
+On High Capacity (HC) storage servers, hard disk drives (HDDs) are the primary
+storage media. On Extreme Flash (EF) storage servers with performance-optimized
+and capacity-optimized flash disks, capacity-optimized flash disks are the primary
+storage media. Performance-optimized flash disks are the primary storage media on
+EF storage servers with only that storage media.
+[ERASE]: Performs secure data deletion on the grid disk.
+[FORCE]: Drops grid disk even if it is currently active.
+[NOWAIT]:    Allows drop command to complete while erase operation continues.
+
+[PERFORMANCEOPTIMIZED]: Limits the drop operation to grid disks on performance-optimized flash disks.
+[CAPACITYOPTIMIZED]:    Limits the drop operation to grid disks on capacity-optimized flash disks.
+[FLASHDISK]: Limits the drop operation to grid disks on flash disks.
+By default, on Extreme Flash (EF) storage servers with performance-optimized and capacity-
+optimized flash disks, only capacity-optimized flash disks are used.
+[HARDDISK]:  Limits the drop operation to grid disks on hard disk drives (HDDs).
+
+[PREPARE]:   Prepare to drop pooldisks prior to storage pool reconfiguration.
+[CANCEL]:    Cancel pooldisks drop.
+
+Examples:
+DROP GRIDDISK GD123_0
+DROP GRIDDISK GD123_0 ERASE=1pass
+DROP GRIDDISK ALL PREFIX=data1
+DROP GRIDDISK ALL PREFIX='data1,data2'
+DROP GRIDDISK ALL PREFIX=sp1 PREPARE
+DROP GRIDDISK ALL PREFIX=sp1 CANCEL
+Note: If you want to drop pooldisks from a storage pool,
+run 'DROP GRIDDISK ALL PREFIX=sp1 PREPARE' first, then run
+storage pool reconfiguration command.
+
+Help for DROP QUARANTINE
+
+Usage: DROP QUARANTINE { ALL | quarantine1 [, quarantine2]... }
+
+Purpose: Removes quarantine(s) from the cell.
+
+Arguments:
+<quarantine(n)>:  The id of the quarantine(s) to be dropped.
+
+Examples:
+DROP QUARANTINE 123
+
+Help for DROP ROLE
+
+Usage: DROP ROLE { ALL | role1[,role2]... }
+
+Purpose: Remove role(s) from the cell.
+
+Arguments:
+<role(n)>:  The name of the role(s) to be dropped.
+
+Options:
+[FORCE]:    Drops role even if has been granted to some user.
+
+Examples:
+DROP ROLE r1,r2
+
+Help for DROP SOFTWAREHISTORY
+
+Usage: DROP SOFTWAREHISTORY { ALL | update1 [, update2]... }
+
+Purpose: Removes record of software update(s) from cell's update history.
+
+Arguments:
+<update(n)>:  The name of the update(s) to be dropped.
+
+Examples:
+DROP SOFTWAREHISTORY ALL
+DROP SOFTWAREHISTORY '12.2.1.2.0.170509'
+
+Help for DROP THRESHOLD
+
+Usage: DROP THRESHOLD { ALL | threshold1 [, threshold2]... }
+
+Purpose: Removes threshold(s) from the cell.
+
+Arguments:
+<threshold(n)>:  The name of the threshold(s) to be dropped.
+
+Examples:
+DROP THRESHOLD TH123
+
+Help for DROP USER
+
+Usage: DROP USER { ALL | user1[,user2]... }
+
+Purpose: Remove user(s) from the cell.
+
+Arguments:
+<user(n)>:  The name of the user(s) to be dropped.
+
+Examples:
+DROP USER scott,john
+
+Help for DROP XRMEMCACHE
+
+Usage: DROP XRMEMCACHE
+
+Purpose: Removes XRMEM cache from the cell.
+
+Examples:
+DROP XRMEMCACHE
+
+Help for DROP XRMEMLOG
+
+Usage: DROP XRMEMLOG [FORCE]
+
+Purpose: Removes XRMEMLOG from the cell.
+
+Options:
+[FORCE]: Drops XRMEMLOG even if data cannot be flushed.
+
+Examples:
+DROP XRMEMLOG
+
+Note: If you are not able to drop the XRMEMLOG due to existing
+redo information in the log, then retry the command first,
+before using the FORCE option. The FORCE option should only be
+used in extreme circumstances because it may cause redo log
+copies to be out of sync, possibly resulting in database redo
+data corruption.
+
+Help for EXPORT CELLDISK
+
+Usage: EXPORT CELLDISK { ALL | cdisk1 [, cdisk2]...}
+
+Purpose: Prepares cell disks for moving them to a different cell.
+
+Arguments:
+<cdisk(n)>:  The name of the cell disk(s) to be exported.
+
+Options:
+[ALL]:   Export all cell disks which have state 'normal'.
+
+Examples:
+EXPORT CELLDISK CD123
+
+Help for GRANT PRIVILEGE
+
+Usage: GRANT PRIVILEGE { ALL ACTIONS | <action> } ON { ALL OBJECTS | <object> }
+[{ ALL ATTRIBUTES | ATTRIBUTES attr1 [, attr2]... }]
+[{ WITH ALL OPTIONS | WITH OPTIONS option1 [, option2]... }]
+TO ROLE { ALL | r1 [, r2]... }
+
+Purpose: Grant a privilege to role(s).
+
+Arguments:
+<action>: Grant privilege for this command type.
+<object>: Grant privilege for this object type.
+<attr(n)>: Grant privilege for these attributes.
+<option(n)>: Grant privilege for these options.
+<r(n)>: The name of the role(s) to grant privilege to.
+
+Options:
+[ALL ACTIONS]: Grant privilege for all actions.
+[ALL OBJECTS]: Grant privilege for all objects.
+[ALL ATTRIBUTES]: Grant privilege for all attributes.
+[WITH ALL OPTIONS]: Grant privilege for all options.
+
+Examples:
+GRANT PRIVILEGE ALL ACTIONS ON ALL OBJECTS ALL ATTRIBUTES WITH ALL OPTIONS TO ROLE ALL
+GRANT PRIVILEGE list on griddisk ATTRIBUTES name,size WITH OPTIONS detail TO ROLE r1,r2
+
+Help for GRANT ROLE
+
+Usage: GRANT ROLE { ALL | r1 [, r2]... } TO USER { ALL | user1 [, user2]... }
+
+Purpose: Grant role(s) to user(s).
+
+Arguments:
+<r(n)>: The name of the role(s) to be granted.
+<user(n): The name of the user(s) to grant role(s) to.>
+
+Examples:
+GRANT ROLE r1,r2 TO USER u1,u2
+
+Help for IMPORT CELLDISK
+
+Usage: IMPORT CELLDISK {
+ALL
+|  cdisk1           [comment='comment-text']
+|  LUN=lun1         [,comment='comment-text']
+|  cdisk1 LUN=lun1  [,comment='comment-text']
+}  [FORCE]
+
+Purpose: Reinstates an exported cell disk on a storage cell. The cell disk is
+typically imported to a different storage cell than the one that the cell disk
+was exported from.
+
+Arguments:
+<cdisk1>:  The name of the cell disk to be imported.
+<lun1>:  The name of the LUN containing a cell disk to be imported.
+<comment-text>: Comment text assigned to the cell disk.
+
+Options:
+[ALL]:   Import all cell disks which have state 'importRequired'.
+[FORCE]: Import the cell disk even if it was not properly exported.
+
+Examples:
+IMPORT CELLDISK CD123
+IMPORT CELLDISK LUN=123
+
+Help for LIST ACTIVEREQUEST
+
+Usage: LIST ACTIVEREQUEST [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for active requests.
+
+Arguments:
+<name>:  The name of the active request to be displayed.
+<filters>:  An expression that determines which active requests should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ACTIVEREQUEST DETAIL
+
+Help for LIST ALERTDEFINITION
+
+Usage: LIST ALERTDEFINITION [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for alert definitions.
+
+Arguments:
+<name>:  The name of the alert definition to be displayed.
+<filters>:  An expression that determines which alert definitions should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ALERTDEFINITION DETAIL
+
+Help for LIST ALERTHISTORY
+
+Usage: LIST ALERTHISTORY [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for alerts.
+
+Arguments:
+<name>:  The id of the alert to be displayed.
+<filters>:  An expression that determines which alerts should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ALERTHISTORY DETAIL
+
+Help for LIST CELL
+
+Usage: LIST CELL [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the cell.
+
+Arguments:
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST CELL attributes status
+LIST CELL DETAIL
+
+Help for LIST CELLDISK
+
+Usage: LIST CELLDISK [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for cell disks.
+
+Arguments:
+<name>:  The name of the cell disk to be displayed.
+<filters>:  An expression that determines which cell disks should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST CELLDISK cd1 DETAIL
+LIST CELLDISK where freespace > 100M
+
+Help for LIST CLUSTER
+
+Usage: LIST CLUSTER [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for active ASM clusters.
+
+Arguments:
+<name>:  The name of the ASM cluster to be displayed.
+<filters>:  An expression that determines which active ASM clusters should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST CLUSTER DETAIL
+
+Help for LIST DATABASE
+
+Usage: LIST DATABASE [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for active databases.
+
+Arguments:
+<name>:  The name of the database to be displayed.
+<filters>:  An expression that determines which active databases should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST DATABASE DETAIL
+
+Help for LIST DIAGPACK
+
+Usage: LIST DIAGPACK [DETAIL]
+
+Purpose: Show the status of the packaging process
+and the list of diagpacks under $LOG_HOME
+Examples:
+LIST DIAGPACK
+LIST DIAGPACK DETAIL
+
+
+Help for LIST ESCLUSTER
+
+Usage: LIST ESCLUSTER [ATTRIBUTES {ALL | <attribute_list>}] [DETAIL]
+
+Purpose: Displays attributes for Exascale cluster.
+
+Arguments:
+<attribute_list>: A comma-separated list of attributes to display.
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ESCLUSTER attributes leaderUrl
+LIST ESCLUSTER detail
+
+Help for LIST ESNODE
+
+Usage: LIST ESNODE [ATTRIBUTES {ALL | <attribute_list>}] [DETAIL]
+
+Purpose: Displays attributes of the Exascale node on the local host.
+
+Arguments:
+<attribute_list>: A comma-separated list of attributes to display.
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ESNODE attributes localRootCert
+LIST ESNODE detail
+
+Help for LIST FLASHCACHE
+
+Usage: LIST FLASHCACHE [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the flash cache.
+
+Arguments:
+<attribute_list>: The specific attributes to display.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST FLASHCACHE DETAIL
+
+Help for LIST FLASHCACHECONTENT
+
+Usage: LIST FLASHCACHECONTENT [<filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for flash cache entries.
+
+Arguments:
+<filters>:  An expression that determines the entries to be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST FLASHCACHECONTENT DETAIL
+
+Help for LIST FLASHLOG
+
+Usage: LIST FLASHLOG [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the flash log.
+
+Arguments:
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST FLASHLOG DETAIL
+
+Help for LIST GRIDDISK
+
+Usage: LIST GRIDDISK [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for grid disks.
+
+Arguments:
+<name>:  The name of the grid disk to be displayed.
+<filters>:  An expression that determines which grid disks should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST GRIDDISK where size > 100M
+LIST GRIDDISK gd1 DETAIL
+
+Help for LIST IBPORT
+
+Usage: LIST IBPORT [ <name> |  <filters> ]  [<attribute_list>] [DETAIL]
+
+Purpose: Display specified attributes for InfiniBand ports.
+
+Arguments:
+<name>: The name of the InfiniBand port to be displayed.
+<filter>: An expression that determines which InfiniBand ports should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]...}
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST IBPORT DETAIL
+LIST IBPORT 'HCA-1:1' WHERE status='Active' ATTRIBUTES name, lid, portNumber DETAIL
+
+Help for LIST IORMPLAN
+
+Usage: LIST IORMPLAN [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the IORM Plan
+
+Arguments:
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST IORMPLAN DETAIL
+
+Help for LIST IORMPROFILE
+
+Usage: LIST IORMPROFILE [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for IORM profiles.
+
+Arguments:
+<name>:  The name of the IORM profile to be displayed.
+<filters>:  An expression that determines which IORM profiles should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST IORMPROFILE DETAIL
+
+Help for LIST KEY
+
+Usage: LIST KEY [<name> | <filters>] [<attribute_list>] [DETAIL]
+LIST KEY [FOR {ASMCLUSTER | CELL | LOCAL CELL | REMOTE CELL}] [DETAIL]
+
+Purpose: Displays key values for clients.
+
+Arguments:
+<name>:  The name of the client to be displayed.
+<filters>:  An expression that determines which clients should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST KEY db1 DETAIL
+LIST KEY
+
+Help for LIST LUN
+
+Usage: LIST LUN [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for LUNs.
+
+Arguments:
+<name>:  The name of the LUN to be displayed.
+<filters>:  An expression that determines which LUNs should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST LUN where celldisk = null
+LIST LUN DETAIL
+
+Help for LIST METRICCURRENT
+
+Usage: LIST METRICCURRENT [<name1>[, <name2>]... ] [<filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for current metrics.
+
+Arguments:
+<nameN>:  The unique name of the metric(s) to be displayed.
+<filters>:  an expression of attributes that determines which metrics should
+be displayed:
+WHERE <filter1> [AND <fileter2>]...
+<filterN>:  <attrN> <comparison operator> <value>
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+The available attributes are displayed by DESCRIBE METRICCURRENT.
+
+Options:
+[DETAIL]: Formats the display with each attribute name followed
+by its value on a separate line.
+
+Examples:
+list metriccurrent
+list metriccurrent where collection=fineGrained
+list metriccurrent where objecttype='celldisk'
+list metriccurrent cl_cput, cl_runq detail
+list metriccurrent where alertState ! = 'normal'
+list metriccurrent where metricObjectName = 'CD1' ATTRIBUTES name,metricValue
+
+Help for LIST METRICDEFINITION
+
+Usage: LIST METRICDEFINITION [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for metric definitions.
+
+Arguments:
+<name>:  The name of the metric definition to be displayed.
+<filters>:  An expression that determines which metric definitions should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST METRICDEFINITION DETAIL
+
+Help for LIST METRICHISTORY
+
+Usage: LIST METRICHISTORY [<name1>[, <name2>]... ] [<filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for metrics over time.
+
+Arguments:
+<nameN>:  The unique name of the metric(s) to be displayed.
+<filters>:  an expression that determines which metrics should
+be displayed.
+WHERE <filter1> [AND <fileter2>]...
+<filterN>:  <attrN> <comparison operator> <value>
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+The available attributes are displayed by DESCRIBE METRICHISTORY.
+Filter on collectionTime to choose the desired time range.
+
+Options:
+[DETAIL]: Formats the display with each attribute name followed
+by its value on a separate line.
+
+Examples:
+list metrichistory CL_CPUT where collectionTime > ' 2008-04-28T13:32:13-07:00'
+list metrichistory DB_IO_WT_SM_RQ where alertState ! = 'normal' AND -
+collectionTime > ' 2008-04-28T13:32:13-07:00'
+list metrichistory where metricObjectName like 'CD.*' AND -
+collectionTime > ' 2008-04-28T13:32:13-07:00' AND -
+collectionTime < ' 2008-04-28T15:32:13-07:00'
+
+Help for LIST METRICSTREAM
+
+Usage: LIST METRICSTREAM [<name1>[, <name2>]... ] [<filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the metric stream.
+
+Arguments:
+<nameN>:  The unique name of the metric(s) to be displayed.
+<filters>:  an expression of attributes that determines which metrics should
+be displayed:
+WHERE <filter1> [AND <fileter2>]...
+<filterN>:  <attrN> <comparison operator> <value>
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+The available attributes are displayed by DESCRIBE METRICSTREAM.
+
+Options:
+[DETAIL]: Formats the display with each attribute name followed
+by its value on a separate line.
+
+Examples:
+list metricstream
+list metricstream where objecttype='celldisk'
+list metricstream cl_cput, cl_runq detail
+list metricstream where metricObjectName = 'CD1' ATTRIBUTES name,metricValue
+
+Help for LIST OFFLOADGROUP
+
+Usage: LIST OFFLOADGROUP [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for offloadgroups.
+
+Arguments:
+<name>:     The name of the offloadgroup to be displayed.
+<filters>:  An expression that determines which offloadgroups should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES { attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST OFFLOADGROUP DETAIL
+LIST OFFLOADGROUP offloadgroup1
+LIST OFFLOADGROUP where isSystemGroup = 'true'
+LIST OFFLOADGROUP ATTRIBUTES name, package
+
+Help for LIST PHYSICALDISK
+
+Usage: LIST PHYSICALDISK [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for physical disks.
+
+Arguments:
+<name>:  The name of the physical disk to be displayed.
+<filters>:  An expression that determines which physical disks should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST PHYSICALDISK DETAIL
+
+Help for LIST PLUGGABLEDATABASE
+
+Usage: LIST PLUGGABLEDATABASE [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for active pluggable databases.
+
+Arguments:
+<name>:  The name of the pluggable database to be displayed.
+<filters>:  An expression that determines which active pluggable databases
+should be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST PLUGGABLEDATABASE DETAIL
+
+Help for LIST QUARANTINE
+
+Usage: LIST QUARANTINE [<id> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for quarantines.
+
+Arguments:
+<id>:       The id of the quarantine to be displayed.
+<filters>:  An expression that determines which quarantines should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST QUARANTINE  DETAIL
+LIST QUARANTINE where comment like 'added.*'
+
+Help for LIST ROLE
+
+Usage: LIST ROLE [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Display specified attributes for roles.
+
+Arguments:
+<name>:  The name of the role to be displayed.
+<filters>:  An expression that determines which roles should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST ROLE DETAIL
+LIST ROLE where name like 'role.*'
+
+Help for LIST SOFTWAREHISTORY
+
+Usage: LIST SOFTWAREHISTORY [ <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for past software updates.
+
+Arguments:
+<filters>:  An expression that determines which updates should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST SOFTWAREHISTORY  DETAIL
+LIST SOFTWAREHISTORY ATTRIBUTES name,status
+
+Help for LIST SOFTWAREUPDATE
+
+Usage: LIST SOFTWAREUPDATE  [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for software update.
+
+Arguments:
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST SOFTWAREUPDATE  DETAIL
+LIST SOFTWAREUPDATE ATTRIBUTES name,status
+
+Help for LIST THRESHOLD
+
+Usage: LIST THRESHOLD [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for thresholds.
+
+Arguments:
+<name>:  The name of the threshold to be displayed.
+<filters>:  An expression that determines which thresholds should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST THRESHOLD  DETAIL
+LIST THRESHOLD where name like 'db_io.*'
+
+Help for LIST USER
+
+Usage: LIST USER [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Display specified attributes for users.
+
+Arguments:
+<name>:  The name of the user to be displayed.
+<filters>:  An expression that determines which users should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST USER DETAIL
+LIST USER where name like 'user.*'
+
+Help for LIST VAULT
+
+Usage: LIST VAULT [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for active Exascale vaults.
+
+Arguments:
+<name>:  The name of the Exascale vault to be displayed.
+<filters>:  An expression that determines which active Exascale vaults should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST VAULT DETAIL
+
+Help for LIST VOLUME
+
+Usage: LIST VOLUME [<name> | <filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for active Exascale volumes.
+
+Arguments:
+<name>:  The name of the Exascale volume to be displayed.
+<filters>:  An expression that determines which active Exascale volumes should
+be displayed.
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST VOLUME DETAIL
+
+Help for LIST XRMEMCACHE
+
+Usage: LIST XRMEMCACHE [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the XRMEM cache.
+
+Arguments:
+<attribute_list>: The specific attributes to display.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST XRMEMCACHE DETAIL
+
+Help for LIST XRMEMCACHECONTENT
+
+Usage: LIST XRMEMCACHECONTENT [<filters>] [<attribute_list>] [DETAIL]
+
+Purpose: Display information about the contents of the XRMEM cache.
+
+Arguments:
+<filters>:  An expression that determines the entries to be displayed.
+<attribute_list>: The specific attributes to display.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST XRMEMCACHECONTENT DETAIL
+LIST XRMEMCACHECONTENT where dbID = 0
+LIST XRMEMCACHECONTENT ATTRIBUTES cachedSize, clusterName
+
+Help for LIST XRMEMLOG
+
+Usage: LIST XRMEMLOG [<attribute_list>] [DETAIL]
+
+Purpose: Displays specified attributes for the XRMEMLOG.
+
+Arguments:
+<attribute_list>: The attributes that are to be displayed.
+ATTRIBUTES {ALL | attr1 [, attr2]... }
+
+Options:
+[DETAIL]: Formats the display as an attribute on each line, with
+an attribute descriptor preceding each value.
+
+Examples:
+LIST XRMEMLOG DETAIL
+
+Help for REGISTER ESNODE
+
+Usage: REGISTER ESNODE id="<node_id>",name="<node_name>",
+cellSecurityPubKey="<key>", services="<services>"
+
+Purpose: Adds the node with the specified ID to this Exascale cluster.
+This command also adds the associated Exascale user.
+
+Arguments:
+<node_id>:   ID of the Exascale node.
+<node_name>: Name of the Exascale node.
+<key>:       RSA public key of the Exascale node.
+<services>:  The services which this Exascale node is allowed to
+run. The value can be one or more of the following,
+separated by '|':
+cell, egs, ers, syseds, usreds, bsm, bsw
+egs stands for ExaROOT service.
+ers stands for ExaCTRL service.
+syseds stands for SysExaVaultMgr service.
+usreds stands for UsrExaVaultMgr service.
+bsm stands for ExaBLKMgr service.
+bsw stands for ExaBLKWkr service.
+
+Examples:
+REGISTER ESNODE id="esnode1",name="host01_esnode",
+cellSecurityPubKey="key1",services="ers|bsm"
+
+Help for REVOKE PRIVILEGE
+
+Usage: REVOKE PRIVILEGE { ALL ACTIONS | <action> } ON { ALL OBJECTS | <object> }
+{ ALL ATTRIBUTES | ATTRIBUTES attr1 [, attr2]... }
+{ WITH ALL OPTIONS | WITH OPTIONS option1 [, option2]... }
+FROM ROLE { ALL | r1 [, r2]... }
+
+Purpose: Revoke a privilege from role(s).
+
+Arguments:
+<action>: Revoke privilege for this command type.
+<object>: Revoke privilege for this object type.
+<attr(n)>: Revoke privilege for these attributes.
+<option(n)>: Revoke privilege for these options.
+<r(n)>: The name of the role(s) to revoke privilege from.
+
+Options:
+[ALL ACTIONS]: Revoke privilege for all actions.
+[ALL OBJECTS]: Revoke privilege for all objects.
+[ALL ATTRIBUTES]: Revoke privilege for all attributes.
+[WITH ALL OPTIONS]: Revoke privilege for all options.
+
+Examples:
+REVOKE PRIVILEGE ALL ACTIONS ON ALL OBJECTS ALL ATTRIBUTES WITH ALL OPTIONS FROM ROLE ALL
+REVOKE PRIVILEGE list on griddisk ATTRIBUTES name,size WITH OPTIONS detail FROM ROLE r1,r2
+
+Help for REVOKE ROLE
+
+Usage: REVOKE ROLE { ALL | r1 [, r2]... } FROM USER { ALL | user1 [, user2]... }
+
+Purpose: Revoke role(s) from user(s).
+
+Arguments:
+<r(n)>: The name of the role(s) to be revoked.
+<user(n): The name of the user(s) to revoke role(s) from.>
+
+Examples:
+REVOKE ROLE r1,r2 FROM USER u1,u2
+
+Help for SET
+
+Usage: SET <variable> <value>
+
+Purpose: Sets a variable to alter the CELLCLI environment settings for your
+current session.
+
+Arguments:
+variable and value represent one of the following clauses:
+DATEFORMAT { STANDARD | LOCAL }
+ECHO { ON | OFF }
+
+Examples:
+set dateformat local
+set echo on
+
+Help for SPOOL
+
+Usage:  SPO[OL] [<filename> [ CRE[ATE] | REP[LACE] | APP[END]] | OFF ]
+
+Purpose: SPOOL <filename>: Direct the results to the file <filename>.
+SPOOL OFF: Turn off the spooling.
+SPOOL: Check the current spooling status.
+
+Arguments:
+<filename>: The filename where the results will be output.
+
+Options:
+[APPEND]: If the filename already exists, the following output will
+be appended to the file. Without this option, the existing file
+contents will be replaced.
+[CREATE]: If the filename already exists, an error is reported.
+[REPLACE]: If the filename already exists, the contents will be
+replaced.  This is the default, when no option is provided.
+
+Examples:
+spool myfile
+spool myfile append
+spool off
+spool
+
+Help for START
+
+Usage: STA[RT] <filename>
+
+Purpose: Run the specified CELLCLI script.
+
+Arguments:
+<filename>: The file containing the CELLCLI commands to execute.
+
+Examples:
+start my_script
